@@ -64,6 +64,10 @@ Prüfen: `node tools/check-cards.mjs` (Struktur) bzw. `node tools/check-cards.mj
 
 ### Bilder von Wikimedia Commons
 
+Schnell per Skript: `node tools/add-image.mjs pla-02 "File:France license plate (EN).png" "Französisches Kennzeichen"` trägt URL, Autor, Lizenz und Quelle ein und prüft, dass das Bild lädt. Vorschläge je Karte (Dateititel bei Commons nachsehen): Kennzeichen-Karten `pla-*` (Suche „license plate Frankreich“ usw.), Leitpfosten `bol-*` (Kategorie „Delineators in …“), Masten `pol-*` (Kategorie „Utility poles in …“), Markierungen `mar-*` (Kategorie „Road markings in …“).
+
+Manuell:
+
 1. Datei auf commons.wikimedia.org suchen, Lizenz prüfen (CC0, CC BY, CC BY-SA, Public Domain).
 2. Bild-URL nehmen, z. B. `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Datei.jpg/960px-Datei.jpg` (Rechtsklick auf das Bild → Adresse kopieren; Breite 960 ist ein erlaubter Standardwert, bei kleinen Originalen die Original-URL verwenden).
 3. `source` mit Titel, Autor, Lizenz und Dateiseiten-URL ausfüllen. Die App zeigt die Nachweise unter **Profil → Bildnachweise**.
@@ -72,7 +76,7 @@ Prüfen: `node tools/check-cards.mjs` (Struktur) bzw. `node tools/check-cards.mj
 ## Stand dieser Version – ehrlich
 
 - 131 Karten, 16 Länder (DE, FR, PL, ES, GB, SE, RU, JP, TH, US, MX, BR, AR, ZA, AU, NZ) plus Ablenker-Länder, 13 Kategorien.
-- **Noch keine Fotos.** Die Wikimedia-API war in der Entwicklungsumgebung stark gedrosselt, daher gibt es nur Diagramme (Fahrspuren, Markierungen, Sonne) und Beschreibungen. Es sind bewusst keine ungeprüften Bild-URLs enthalten. Bilder lassen sich wie oben Karte für Karte ergänzen.
+- **Noch keine Fotos.** Wikimedia hat die Entwicklungsumgebung gedrosselt (HTTP 429), daher gibt es nur Diagramme (Fahrspuren, Markierungen, Sonne) und Beschreibungen. Es sind bewusst keine ungeprüften Bild-URLs enthalten. Bilder lassen sich wie oben Karte für Karte ergänzen.
 - Die Meta-Inhalte sind Community-Wissen nach bestem Wissen und können sich ändern (Google tauscht Kameras/Autos aus). Besonders unsicher: Car-Meta je Land und einige Bollard-/Mast-/Kennzeichen-Details – bitte im Spiel gegenprüfen und `cards.json` korrigieren.
 - Weltkarte: Natural Earth (gemeinfrei), vereinfacht; sehr kleine Länder fehlen.
 
