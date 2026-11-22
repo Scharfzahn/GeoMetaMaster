@@ -1,0 +1,2505 @@
+{
+ "version": 1,
+ "hinweis": "Neue Karten einfach in 'karten' ergänzen. Felder siehe README.",
+ "kategorien": [
+  {
+   "id": "car",
+   "name": "Car Meta",
+   "icon": "🚗",
+   "farbe": "#60a5fa",
+   "beschreibung": "Google-Auto, Kamera und Sichtbarkeit: Antenne, Schnorchel, Kratzer, Schatten.",
+   "abzeichen": {
+    "name": "Auto-Detektiv",
+    "icon": "🕵️"
+   }
+  },
+  {
+   "id": "coverage",
+   "name": "Coverage",
+   "icon": "🛰️",
+   "farbe": "#a78bfa",
+   "beschreibung": "Generationen, Trekker, Jahreszeit, Lücken und Bildqualität.",
+   "abzeichen": {
+    "name": "Kartograf",
+    "icon": "🗺️"
+   }
+  },
+  {
+   "id": "bollards",
+   "name": "Bollards",
+   "icon": "🚧",
+   "farbe": "#fb923c",
+   "beschreibung": "Leitpfosten: Form, Farbe, Reflektoren.",
+   "abzeichen": {
+    "name": "Bollard-Profi",
+    "icon": "🚧"
+   }
+  },
+  {
+   "id": "poles",
+   "name": "Strommasten",
+   "icon": "⚡",
+   "farbe": "#facc15",
+   "beschreibung": "Holz, Beton, Stahl, Querträger, Isolatoren und Kabel.",
+   "abzeichen": {
+    "name": "Strippenzieher",
+    "icon": "⚡"
+   }
+  },
+  {
+   "id": "lanes",
+   "name": "Fahrspur & Verkehr",
+   "icon": "🛣️",
+   "farbe": "#34d399",
+   "beschreibung": "Links- oder Rechtsverkehr, Spuren, Standstreifen.",
+   "abzeichen": {
+    "name": "Spurenleser",
+    "icon": "🛣️"
+   }
+  },
+  {
+   "id": "markings",
+   "name": "Straßenmarkierungen",
+   "icon": "➖",
+   "farbe": "#f472b6",
+   "beschreibung": "Mittellinie, Randlinie, Gelb oder Weiß, gestrichelt oder durchgezogen.",
+   "abzeichen": {
+    "name": "Linienrichter",
+    "icon": "📏"
+   }
+  },
+  {
+   "id": "sun",
+   "name": "Sonne & Himmelsrichtung",
+   "icon": "☀️",
+   "farbe": "#fbbf24",
+   "beschreibung": "Halbkugel, Schattenrichtung, Sonnenstand, Breitengrad.",
+   "abzeichen": {
+    "name": "Navigator",
+    "icon": "🧭"
+   }
+  },
+  {
+   "id": "plates",
+   "name": "Kennzeichen & Schilder",
+   "icon": "🔢",
+   "farbe": "#38bdf8",
+   "beschreibung": "Nummernschilder und Straßennamen-Schilder.",
+   "abzeichen": {
+    "name": "Schildermeister",
+    "icon": "🪪"
+   }
+  },
+  {
+   "id": "nature",
+   "name": "Natur & Klima",
+   "icon": "🌿",
+   "farbe": "#4ade80",
+   "beschreibung": "Vegetation, Boden, Landschaft, Klima.",
+   "abzeichen": {
+    "name": "Naturforscher",
+    "icon": "🌲"
+   }
+  },
+  {
+   "id": "architecture",
+   "name": "Architektur & Häuser",
+   "icon": "🏠",
+   "farbe": "#f87171",
+   "beschreibung": "Haustypen, Zäune, Briefkästen.",
+   "abzeichen": {
+    "name": "Baumeister",
+    "icon": "🏛️"
+   }
+  },
+  {
+   "id": "language",
+   "name": "Sprache & Schrift",
+   "icon": "🔤",
+   "farbe": "#c084fc",
+   "beschreibung": "Schriftsysteme, typische Wörter, Stop-Schilder.",
+   "abzeichen": {
+    "name": "Polyglott",
+    "icon": "🗣️"
+   }
+  },
+  {
+   "id": "roadside",
+   "name": "Straßenrand",
+   "icon": "🪧",
+   "farbe": "#2dd4bf",
+   "beschreibung": "Kilometersteine, Wegweiser, Ampeln.",
+   "abzeichen": {
+    "name": "Straßenmeister",
+    "icon": "🚦"
+   }
+  },
+  {
+   "id": "extra",
+   "name": "Weitere Merkmale",
+   "icon": "✨",
+   "farbe": "#e879f9",
+   "beschreibung": "Ketten, Tankstellen, Fahrzeuge, Warnschilder.",
+   "abzeichen": {
+    "name": "Allrounder",
+    "icon": "🎖️"
+   }
+  }
+ ],
+ "laender": {
+  "DE": {
+   "name": "Deutschland",
+   "flagge": "🇩🇪",
+   "aehnlich": [
+    "AT",
+    "CH",
+    "NL",
+    "PL"
+   ]
+  },
+  "FR": {
+   "name": "Frankreich",
+   "flagge": "🇫🇷",
+   "aehnlich": [
+    "ES",
+    "IT",
+    "CH",
+    "DE"
+   ]
+  },
+  "PL": {
+   "name": "Polen",
+   "flagge": "🇵🇱",
+   "aehnlich": [
+    "DE",
+    "UA",
+    "SE"
+   ]
+  },
+  "ES": {
+   "name": "Spanien",
+   "flagge": "🇪🇸",
+   "aehnlich": [
+    "FR",
+    "IT",
+    "MX"
+   ]
+  },
+  "GB": {
+   "name": "Vereinigtes Königreich",
+   "flagge": "🇬🇧",
+   "aehnlich": [
+    "AU",
+    "NZ",
+    "ZA"
+   ]
+  },
+  "SE": {
+   "name": "Schweden",
+   "flagge": "🇸🇪",
+   "aehnlich": [
+    "NO",
+    "FI",
+    "DE"
+   ]
+  },
+  "RU": {
+   "name": "Russland",
+   "flagge": "🇷🇺",
+   "aehnlich": [
+    "UA",
+    "PL",
+    "FI"
+   ]
+  },
+  "JP": {
+   "name": "Japan",
+   "flagge": "🇯🇵",
+   "aehnlich": [
+    "TH",
+    "KR",
+    "ID"
+   ]
+  },
+  "TH": {
+   "name": "Thailand",
+   "flagge": "🇹🇭",
+   "aehnlich": [
+    "JP",
+    "ID",
+    "IN"
+   ]
+  },
+  "US": {
+   "name": "USA",
+   "flagge": "🇺🇸",
+   "aehnlich": [
+    "CA",
+    "MX",
+    "AU"
+   ]
+  },
+  "MX": {
+   "name": "Mexiko",
+   "flagge": "🇲🇽",
+   "aehnlich": [
+    "ES",
+    "AR",
+    "BR"
+   ]
+  },
+  "BR": {
+   "name": "Brasilien",
+   "flagge": "🇧🇷",
+   "aehnlich": [
+    "AR",
+    "MX",
+    "CL"
+   ]
+  },
+  "AR": {
+   "name": "Argentinien",
+   "flagge": "🇦🇷",
+   "aehnlich": [
+    "BR",
+    "CL",
+    "MX"
+   ]
+  },
+  "ZA": {
+   "name": "Südafrika",
+   "flagge": "🇿🇦",
+   "aehnlich": [
+    "AU",
+    "NZ",
+    "GB"
+   ]
+  },
+  "AU": {
+   "name": "Australien",
+   "flagge": "🇦🇺",
+   "aehnlich": [
+    "NZ",
+    "ZA",
+    "US"
+   ]
+  },
+  "NZ": {
+   "name": "Neuseeland",
+   "flagge": "🇳🇿",
+   "aehnlich": [
+    "AU",
+    "GB",
+    "ZA"
+   ]
+  },
+  "AT": {
+   "name": "Österreich",
+   "flagge": "🇦🇹",
+   "aehnlich": [
+    "DE",
+    "CH"
+   ]
+  },
+  "CH": {
+   "name": "Schweiz",
+   "flagge": "🇨🇭",
+   "aehnlich": [
+    "DE",
+    "AT",
+    "FR"
+   ]
+  },
+  "NL": {
+   "name": "Niederlande",
+   "flagge": "🇳🇱",
+   "aehnlich": [
+    "DE",
+    "FR"
+   ]
+  },
+  "IT": {
+   "name": "Italien",
+   "flagge": "🇮🇹",
+   "aehnlich": [
+    "FR",
+    "ES"
+   ]
+  },
+  "NO": {
+   "name": "Norwegen",
+   "flagge": "🇳🇴",
+   "aehnlich": [
+    "SE",
+    "FI"
+   ]
+  },
+  "FI": {
+   "name": "Finnland",
+   "flagge": "🇫🇮",
+   "aehnlich": [
+    "SE",
+    "NO",
+    "RU"
+   ]
+  },
+  "CA": {
+   "name": "Kanada",
+   "flagge": "🇨🇦",
+   "aehnlich": [
+    "US"
+   ]
+  },
+  "CL": {
+   "name": "Chile",
+   "flagge": "🇨🇱",
+   "aehnlich": [
+    "AR",
+    "BR"
+   ]
+  },
+  "UA": {
+   "name": "Ukraine",
+   "flagge": "🇺🇦",
+   "aehnlich": [
+    "RU",
+    "PL"
+   ]
+  },
+  "ID": {
+   "name": "Indonesien",
+   "flagge": "🇮🇩",
+   "aehnlich": [
+    "TH",
+    "JP"
+   ]
+  },
+  "IN": {
+   "name": "Indien",
+   "flagge": "🇮🇳",
+   "aehnlich": [
+    "TH"
+   ]
+  },
+  "KR": {
+   "name": "Südkorea",
+   "flagge": "🇰🇷",
+   "aehnlich": [
+    "JP"
+   ]
+  }
+ },
+ "karten": [
+  {
+   "id": "car-01",
+   "kategorie": "car",
+   "frage": "Welche Kamera-Generation liefert die schärfsten Bilder mit kräftigen Farben (ab ca. 2017)?",
+   "optionen": [
+    "Gen 1",
+    "Gen 2",
+    "Gen 3",
+    "Gen 4"
+   ],
+   "richtig": 3,
+   "erklaerung": "Gen 4 ist die neueste Generation: sehr scharf, kräftige Farben, kaum sichtbare Nähte. Ältere Generationen wirken weicher.",
+   "merksatz": "Je höher die Zahl, desto schärfer – Gen 4 ist der Klarste.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "car-02",
+   "kategorie": "car",
+   "frage": "Du siehst ein Gen-4-Bild. Was ist vom Google-Auto meist zu sehen?",
+   "optionen": [
+    "Meist nichts – nur Straße und Himmel",
+    "Immer das Heck",
+    "Immer die Front",
+    "Immer ein roter Pick-up"
+   ],
+   "richtig": 0,
+   "erklaerung": "Bei Gen 4 ist das Fahrzeug in den meisten Ländern nicht sichtbar. Sichtbare Autoteile sind eher ein Zeichen für ältere Kameras (Gen 2/3) oder besondere Fahrzeuge.",
+   "merksatz": "Gen 4 = Geisterauto: kaum etwas zu sehen.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "car-03",
+   "kategorie": "car",
+   "land": "RU",
+   "hinweis": "Gen 3: schwarzes Auto sichtbar, mit langer Antenne",
+   "erklaerung": "Community-Wissen: In Russland zeigen Gen-3-Bilder häufig ein dunkles Fahrzeug mit langer Antenne. Autos und Antennen sind ein starker Hinweis, weil sie je Land/Kampagne gleich bleiben.",
+   "merksatz": "Russland: Schwarz + Stange.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "SE",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "modi": [
+    "mc",
+    "tf"
+   ]
+  },
+  {
+   "id": "car-04",
+   "kategorie": "car",
+   "land": "MX",
+   "hinweis": "Gen 3: weißes Auto mit kurzer, dicker Antenne",
+   "erklaerung": "Community-Wissen: Das mexikanische Gen-3-Auto ist weiß und hat eine kurze, stämmige Antenne. Gen 4 sieht anders aus.",
+   "merksatz": "Mexiko: weiß mit Stummel-Antenne.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "SE",
+    "PL"
+   ],
+   "schwierigkeit": 2,
+   "modi": [
+    "mc",
+    "tf"
+   ]
+  },
+  {
+   "id": "car-05",
+   "kategorie": "car",
+   "land": "AR",
+   "hinweis": "Schwarzes Heck des Autos sichtbar, flache, baumarme Landschaft",
+   "erklaerung": "Community-Wissen: In Argentinien ist häufig das schwarze Fahrzeugheck zu sehen. Dazu passt die weite, flache Pampa.",
+   "merksatz": "Argentinien: schwarzes Heck in der Pampa.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "modi": [
+    "mc",
+    "tf"
+   ]
+  },
+  {
+   "id": "car-06",
+   "kategorie": "car",
+   "land": "BR",
+   "hinweis": "Meist schlichtes weißes Auto sichtbar (Gen 3)",
+   "erklaerung": "Community-Wissen: In großen Teilen Brasiliens fährt ein einfaches weißes Auto, Gen 4 sieht anders aus. Verwechsle es nicht mit Mexiko: dort gibt es die kurze Antenne.",
+   "merksatz": "Brasilien: weiß und schlicht.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 3,
+   "modi": [
+    "mc",
+    "tf"
+   ]
+  },
+  {
+   "id": "car-07",
+   "kategorie": "car",
+   "frage": "Ein Schnorchel (Luftansaugrohr) vorn am Google-Auto ist besonders typisch für …",
+   "optionen": [
+    "Kenia",
+    "Schweden",
+    "Japan",
+    "Deutschland"
+   ],
+   "richtig": 0,
+   "erklaerung": "Schnorchel an der Front sieht man auf Gen-3/4-Bildern in Afrika, z. B. in Kenia. Sie sind für Flussdurchquerungen und Staub gedacht.",
+   "merksatz": "Schnorchel = Safari-Auto.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "car-08",
+   "kategorie": "car",
+   "frage": "Derselbe Kratzer oder Fleck taucht in vielen Bildern an gleicher Stelle auf. Was bedeutet das?",
+   "optionen": [
+    "Gleiche Kamera/gleiches Auto – hilft, Region und Jahr einzugrenzen",
+    "Linksverkehr",
+    "Es ist Winter",
+    "Das Bild stammt von einem Trekker"
+   ],
+   "richtig": 0,
+   "erklaerung": "Fahrzeuge und Kameras bleiben oft in einer Region. Wiederkehrende Kratzer, Flecken oder Teile am Bildrand sind ein Fingerabdruck der Kampagne.",
+   "merksatz": "Gleicher Fleck = gleiche Kamera.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "car-09",
+   "kategorie": "car",
+   "frage": "Du siehst den Schatten des Google-Autos auf der Straße. Was verrät er?",
+   "optionen": [
+    "Die Richtung der Sonne – und damit grob die Himmelsrichtung",
+    "Das Land sofort",
+    "Die Kamera-Generation sicher",
+    "Nichts"
+   ],
+   "richtig": 0,
+   "erklaerung": "Der Autoschatten fällt von der Sonne weg. Mit dem Sonnenstand (Nordhalbkugel: mittags im Süden) kannst du Fahrtrichtung und Himmelsrichtung ableiten.",
+   "merksatz": "Schatten zeigt weg von der Sonne.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "car-10",
+   "kategorie": "car",
+   "frage": "Weißer Pick-up mit Antenne in der Wüste – wohin gehört er am ehesten?",
+   "optionen": [
+    "Golfstaaten (z. B. Oman, VAE, Katar)",
+    "Neuseeland",
+    "Polen",
+    "Brasilien"
+   ],
+   "richtig": 0,
+   "erklaerung": "Community-Wissen: In den Golfstaaten fahren weiße Pick-ups mit Antenne, die Position der Antenne unterscheidet die Länder.",
+   "merksatz": "Pick-up + Wüste = Golf.",
+   "schwierigkeit": 3
+  },
+  {
+   "id": "cov-01",
+   "kategorie": "coverage",
+   "frage": "Mitten im Wald auf einem Wanderweg: Welche Kamera hat das Bild aufgenommen?",
+   "optionen": [
+    "Trekker (Rucksack)",
+    "Gen-3-Auto",
+    "Satellit",
+    "Fahrrad-Gen-2"
+   ],
+   "richtig": 0,
+   "erklaerung": "Der Trekker ist ein Rucksack mit Kamera. Er deckt Wanderwege, Parks, Inseln und Fußgängerzonen ab, wo kein Auto hinkommt.",
+   "merksatz": "Weg ohne Straße = Trekker.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-02",
+   "kategorie": "coverage",
+   "frage": "Welches Land hat (auf dem Festland) praktisch keine offizielle Street-View-Abdeckung?",
+   "optionen": [
+    "China",
+    "Japan",
+    "Mexiko",
+    "Polen"
+   ],
+   "richtig": 0,
+   "erklaerung": "In China (Festland) gibt es keine offizielle Google-Abdeckung. Wenn du also normale Gen-Bilder siehst, bist du dort fast sicher nicht.",
+   "merksatz": "China: kein offizielles Street View.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-03",
+   "kategorie": "coverage",
+   "land": "DE",
+   "hinweis": "Viele Hausfassaden sind verpixelt (Opt-out ab 2010); Hauptabdeckung 2008–2011, neue Bilder erst seit ca. 2022/23",
+   "erklaerung": "Deutschland ist bekannt für verpixelte Häuser: Viele Bewohner ließen ihre Fassade 2010 unkenntlich machen. Neue Gen-4-Bilder kamen erst nach vielen Jahren.",
+   "merksatz": "Verpixelte Häuser = Deutschland.",
+   "ablenker": [
+    "FR",
+    "ES",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-04",
+   "kategorie": "coverage",
+   "land": "SE",
+   "frage": "Verschneite Szene mit kahlen Bäumen auf Street View. Welches Land passt von diesen am besten?",
+   "optionen": [
+    "Schweden",
+    "Thailand",
+    "Brasilien",
+    "Südafrika"
+   ],
+   "richtig": 0,
+   "erklaerung": "Winterbilder gibt es hauptsächlich in hohen Breiten, etwa in Skandinavien, Russland oder Kanada. In den Tropen schneit es nicht.",
+   "merksatz": "Schnee = Norden (oder Berge).",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-05",
+   "kategorie": "coverage",
+   "land": "AU",
+   "frage": "Im Dezember sind die Bäume voll belaubt und es ist heiß. Welches Land passt am besten?",
+   "optionen": [
+    "Australien",
+    "Schweden",
+    "Polen",
+    "Russland"
+   ],
+   "richtig": 0,
+   "erklaerung": "Auf der Südhalbkugel ist Dezember Sommer. Belaubte Bäume und Sommerbilder im Dezember/Januar sprechen für Australien, Neuseeland, Südafrika oder Südamerika.",
+   "merksatz": "Dezember-Sommer = Südhalbkugel.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-06",
+   "kategorie": "coverage",
+   "frage": "Welche Gegend ist fast immer eine Coverage-Lücke?",
+   "optionen": [
+    "Tiefer Amazonas-Regenwald abseits von Flüssen und Straßen",
+    "Die Berliner Innenstadt",
+    "Tokyo",
+    "London"
+   ],
+   "richtig": 0,
+   "erklaerung": "Street View folgt Straßen. Wo es keine befahrbaren Wege gibt, gibt es auch keine Bilder.",
+   "merksatz": "Keine Straße, kein Street View.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-07",
+   "kategorie": "coverage",
+   "frage": "Die Bildqualität ist ungewöhnlich, die Kamera wirkt selbstgebaut. Was ist das meist?",
+   "optionen": [
+    "Inoffizielle Abdeckung (von Nutzern hochgeladen)",
+    "Gen 4",
+    "Trekker",
+    "Satellitenbild"
+   ],
+   "richtig": 0,
+   "erklaerung": "Inoffizielle Bilder stammen von Nutzern mit 360°-Kameras. Sie sind oft in Ländern mit wenig offizieller Abdeckung zu finden.",
+   "merksatz": "Seltsame Qualität = inoffiziell.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "bol-01",
+   "kategorie": "bollards",
+   "frage": "Wie heißen die Pfosten, die am Straßenrand Kurven und Fahrbahnrand markieren?",
+   "optionen": [
+    "Leitpfosten (Bollards)",
+    "Poller",
+    "Kilometersteine",
+    "Leitplanken"
+   ],
+   "richtig": 0,
+   "erklaerung": "In GeoGuessr sagt man Bollards. Form, Farbe, Streifen und Reflektoren sind je Land genormt – deshalb sind sie ein Top-Hinweis.",
+   "merksatz": "Bollard = Pfosten am Rand, Muster verrät das Land.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "bol-02",
+   "kategorie": "bollards",
+   "frage": "Warum sind Bollards so wertvoll in GeoGuessr?",
+   "optionen": [
+    "Form, Farbe und Reflektoren sind landesspezifisch",
+    "Sie zeigen die Himmelsrichtung",
+    "Sie verraten die Jahreszeit",
+    "Es gibt sie nur in Europa"
+   ],
+   "richtig": 0,
+   "erklaerung": "Fast jedes Land hat eigene Normen. Ein Pfosten kann dich schon auf wenige Länder eingrenzen, oft sogar auf eines.",
+   "merksatz": "Pfosten anschauen, Land eingrenzen.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "bol-03",
+   "kategorie": "bollards",
+   "land": "DE",
+   "hinweis": "Weißer Leitpfosten mit schwarzem Band und Reflektor",
+   "erklaerung": "In Deutschland sind Leitpfosten weiß mit einem schwarzen Streifen, in dem Reflektoren sitzen. Rechts und links der Fahrbahn unterscheiden sich die Reflektoren.",
+   "merksatz": "Deutschland: weiß mit schwarzem Gürtel.",
+   "ablenker": [
+    "JP",
+    "US",
+    "AU",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Leitpfosten"
+  },
+  {
+   "id": "bol-04",
+   "kategorie": "bollards",
+   "frage": "Du siehst keine Leitpfosten, sondern nur Reflektoren auf Pfählen/Bäumen. Was folgt daraus?",
+   "optionen": [
+    "Das Land nutzt wenig Standard-Pfosten – nimm andere Hinweise dazu",
+    "Es ist sicher Deutschland",
+    "Es ist sicher Japan",
+    "Es ist Winter"
+   ],
+   "richtig": 0,
+   "erklaerung": "Fehlende oder abweichende Pfosten sind selbst ein Hinweis. Kombiniere sie mit Markierungen, Masten und Sprache.",
+   "merksatz": "Kein Bollard ist auch Information.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "pol-01",
+   "kategorie": "poles",
+   "land": "US",
+   "hinweis": "Holzmasten mit Querträger und zylindrischen Trafos oben",
+   "erklaerung": "In den USA sieht man oft Holzmasten mit Querarm (Crossarm) und zylindrischen Transformatoren, dazu viele Kabel in mehreren Ebenen.",
+   "merksatz": "USA: Holz, Querarm, Trafo-Dosen.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "JP",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Strommasten"
+  },
+  {
+   "id": "pol-02",
+   "kategorie": "poles",
+   "land": "AU",
+   "frage": "Zwei Stahlträger, mit Beton verbunden: Dieser „Stobie-Mast“ gehört zu …",
+   "optionen": [
+    "Südaustralien",
+    "Neuseeland",
+    "Südafrika",
+    "Schweden"
+   ],
+   "richtig": 0,
+   "erklaerung": "Der Stobie-Mast ist eine Eigenheit von South Australia. Wenn du ihn siehst, bist du fast sicher in Südaustralien.",
+   "merksatz": "Stobie = South Australia.",
+   "schwierigkeit": 3
+  },
+  {
+   "id": "pol-03",
+   "kategorie": "poles",
+   "land": "SE",
+   "hinweis": "Holzmasten in H-Form (zwei Pfosten mit Querbalken) im Wald",
+   "erklaerung": "In Skandinavien sind H-Holzmasten (zwei Pfosten mit Querbalken) typisch für Überlandleitungen durch Wälder.",
+   "merksatz": "Schweden: Holz-H im Wald.",
+   "ablenker": [
+    "TH",
+    "BR",
+    "JP",
+    "AU"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Strommasten"
+  },
+  {
+   "id": "pol-04",
+   "kategorie": "poles",
+   "land": "TH",
+   "hinweis": "Betonmasten mit wildem Kabelsalat und Trafos",
+   "erklaerung": "In Thailand hängen oft sehr viele Kabel an Betonmasten – das Bild wirkt chaotisch. Das hilft gegen Länder mit ordentlicher Verkabelung.",
+   "merksatz": "Thailand: Beton und Kabelchaos.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "PL",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Strommasten"
+  },
+  {
+   "id": "pol-05",
+   "kategorie": "poles",
+   "land": "JP",
+   "hinweis": "Betonmasten mit vielen Kabeln und Trafo in engen Straßen",
+   "erklaerung": "In Japan verlaufen Kabel fast überall oberirdisch an runden Betonmasten, oft mit Trafo und Verteilerkästen – selbst in Städten.",
+   "merksatz": "Japan: Kabel über jeder Straße.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "FR",
+    "PL"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Strommasten"
+  },
+  {
+   "id": "pol-06",
+   "kategorie": "poles",
+   "frage": "Stahlgittermast mit mehreren Querträgern und vielen Isolatorscheiben. Was ist das?",
+   "optionen": [
+    "Hochspannungsleitung",
+    "Telefonleitung",
+    "Straßenbeleuchtung",
+    "Eisenbahn-Oberleitung"
+   ],
+   "richtig": 0,
+   "erklaerung": "Je mehr Isolatorscheiben, desto höher die Spannung. Gittermasten mit mehreren Traversen tragen Hochspannung.",
+   "merksatz": "Viele Scheiben = viel Spannung.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "pol-07",
+   "kategorie": "poles",
+   "frage": "Welches Material ist bei Strommasten weltweit am häufigsten für Mittelspannung?",
+   "optionen": [
+    "Holz und Beton",
+    "Glas",
+    "Aluminium-Blech",
+    "Keramik"
+   ],
+   "richtig": 0,
+   "erklaerung": "Holz und Beton sind verbreitet. Welches Material wo vorkommt, ist je Land verschieden – deshalb lohnt der Blick auf Mast und Querträger.",
+   "merksatz": "Holz oder Beton – Details verraten das Land.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-01",
+   "kategorie": "lanes",
+   "frage": "Welcher Verkehr ist hier zu sehen? (Ansicht von oben)",
+   "optionen": [
+    "Rechtsverkehr",
+    "Linksverkehr"
+   ],
+   "richtig": 0,
+   "erklaerung": "Die blauen und rosa Autos fahren rechts in ihrer Richtung: Rechtsverkehr.",
+   "merksatz": "Rechts fahren: Beifahrer am Rand der Mitte.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "rechts",
+    "mitte": "white-dashed",
+    "rand": "white-solid"
+   }
+  },
+  {
+   "id": "lan-02",
+   "kategorie": "lanes",
+   "frage": "Welcher Verkehr ist hier zu sehen? (Ansicht von oben)",
+   "optionen": [
+    "Rechtsverkehr",
+    "Linksverkehr"
+   ],
+   "richtig": 1,
+   "erklaerung": "Die Autos halten sich in ihrer Fahrtrichtung links: Linksverkehr.",
+   "merksatz": "Links fahren: Gegenverkehr rechts.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "links",
+    "mitte": "white-dashed",
+    "rand": "white-solid"
+   }
+  },
+  {
+   "id": "lan-03",
+   "kategorie": "lanes",
+   "land": "TH",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Thailand",
+    "Polen",
+    "Mexiko",
+    "Schweden"
+   ],
+   "richtig": 0,
+   "erklaerung": "Linksverkehr gilt u. a. in Thailand, Japan, Vereinigtes Königreich, Australien, Neuseeland und Südafrika.",
+   "merksatz": "Links: UK, JP, TH, AU, NZ, ZA.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-04",
+   "kategorie": "lanes",
+   "land": "ZA",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Frankreich",
+    "Südafrika",
+    "Argentinien",
+    "Spanien"
+   ],
+   "richtig": 1,
+   "erklaerung": "Südafrika fährt links, wie viele ehemalige britische Kolonien.",
+   "merksatz": "Südafrika: links.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-05",
+   "kategorie": "lanes",
+   "land": "NZ",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Brasilien",
+    "Russland",
+    "Neuseeland",
+    "Deutschland"
+   ],
+   "richtig": 2,
+   "erklaerung": "Neuseeland fährt links.",
+   "merksatz": "Neuseeland: links.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-06",
+   "kategorie": "lanes",
+   "land": "JP",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Japan",
+    "USA",
+    "Schweden",
+    "Polen"
+   ],
+   "richtig": 0,
+   "erklaerung": "Japan fährt links – im Unterschied zu Korea und China.",
+   "merksatz": "Japan: links.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-07",
+   "kategorie": "lanes",
+   "land": "AU",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Mexiko",
+    "Australien",
+    "Frankreich",
+    "Brasilien"
+   ],
+   "richtig": 1,
+   "erklaerung": "Australien fährt links.",
+   "merksatz": "Australien: links.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-08",
+   "kategorie": "lanes",
+   "land": "GB",
+   "frage": "Welches dieser Länder hat Linksverkehr?",
+   "optionen": [
+    "Spanien",
+    "Vereinigtes Königreich",
+    "Argentinien",
+    "Russland"
+   ],
+   "richtig": 1,
+   "erklaerung": "Im Vereinigten Königreich fährt man links, auf der Insel genauso wie in vielen Ex-Kolonien.",
+   "merksatz": "UK: links.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "lan-09",
+   "kategorie": "lanes",
+   "frage": "Du siehst viele Autos mit Lenkrad rechts. Was folgt daraus?",
+   "optionen": [
+    "Meist Linksverkehr",
+    "Meist Rechtsverkehr",
+    "Nichts",
+    "Nur Japan"
+   ],
+   "richtig": 0,
+   "erklaerung": "Rechtslenker gehören meist zu Linksverkehr, weil der Fahrer nah an der Straßenmitte sitzt.",
+   "merksatz": "Lenkrad rechts → Verkehr links.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "mar-01",
+   "kategorie": "markings",
+   "land": "US",
+   "hinweis": "Doppelte gelbe Mittellinie, weiße Randlinie, Rechtsverkehr",
+   "erklaerung": "In den USA trennt Gelb den Gegenverkehr, Weiß trennt Spuren gleicher Richtung und markiert den Rand. Durchgezogen heißt: nicht überholen.",
+   "merksatz": "USA: Gelb trennt Gegenverkehr.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "rechts",
+    "mitte": "yellow-double",
+    "rand": "white-solid"
+   }
+  },
+  {
+   "id": "mar-02",
+   "kategorie": "markings",
+   "land": "TH",
+   "hinweis": "Gelbe Mittellinie plus Linksverkehr",
+   "erklaerung": "In Thailand sind Mittellinien gelb, die Ränder weiß, und man fährt links. Gelb + links ist eine seltene Kombination.",
+   "merksatz": "Thailand: gelb und links.",
+   "ablenker": [
+    "US",
+    "DE",
+    "MX",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "links",
+    "mitte": "yellow-double",
+    "rand": "white-solid"
+   }
+  },
+  {
+   "id": "mar-03",
+   "kategorie": "markings",
+   "land": "ZA",
+   "hinweis": "Linksverkehr, gelbe durchgezogene Randlinie und breiter Seitenstreifen",
+   "erklaerung": "In Südafrika sind die Randlinien gelb, und neben der Fahrbahn gibt es oft einen breiten Seitenstreifen, auf den langsame Fahrzeuge ausweichen.",
+   "merksatz": "Südafrika: gelbe Ränder.",
+   "ablenker": [
+    "US",
+    "DE",
+    "PL",
+    "FR"
+   ],
+   "schwierigkeit": 3,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "links",
+    "mitte": "white-dashed",
+    "rand": "yellow-solid",
+    "standstreifen": true
+   }
+  },
+  {
+   "id": "mar-04",
+   "kategorie": "markings",
+   "land": "FR",
+   "hinweis": "Gestrichelte weiße Randlinie auf Landstraßen, Rechtsverkehr",
+   "erklaerung": "In Frankreich sind die Randlinien auf Landstraßen häufig gestrichelt – anders als z. B. in Deutschland oder Spanien (meist durchgezogen).",
+   "merksatz": "Frankreich: Rand gestrichelt.",
+   "ablenker": [
+    "DE",
+    "US",
+    "RU",
+    "ES"
+   ],
+   "schwierigkeit": 3,
+   "diagram": {
+    "type": "strasse",
+    "verkehr": "rechts",
+    "mitte": "white-dashed",
+    "rand": "white-dashed"
+   }
+  },
+  {
+   "id": "mar-05",
+   "kategorie": "markings",
+   "land": "GB",
+   "frage": "Gelbe Linien am Bordstein (Parkverbot) sind besonders typisch für …",
+   "optionen": [
+    "Vereinigtes Königreich",
+    "Deutschland",
+    "Polen",
+    "Spanien"
+   ],
+   "richtig": 0,
+   "erklaerung": "Die „double yellow lines“ am Fahrbahnrand bedeuten Parkverbot und sind ein klassisches britisches Merkmal.",
+   "merksatz": "Doppelgelb am Rand = UK.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "mar-06",
+   "kategorie": "markings",
+   "land": "DE",
+   "frage": "Gelbe Linien auf deutschen Straßen bedeuten meist …",
+   "optionen": [
+    "Baustellen-Markierung (temporär)",
+    "Dauerhafte Mittellinie",
+    "Radweg",
+    "Parkverbot überall"
+   ],
+   "richtig": 0,
+   "erklaerung": "In Deutschland sind dauerhafte Linien weiß; gelb ist für Baustellen.",
+   "merksatz": "Gelb in Deutschland = Baustelle.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "mar-07",
+   "kategorie": "markings",
+   "land": "US",
+   "frage": "In den USA trennt eine gelbe Linie …",
+   "optionen": [
+    "Gegenverkehr",
+    "Fahrspuren gleicher Richtung",
+    "Radwege",
+    "Den Fahrbahnrand"
+   ],
+   "richtig": 0,
+   "erklaerung": "Gelb = gegenläufig, weiß = gleich gerichtet.",
+   "merksatz": "Gelb gegen, weiß mit.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "mar-08",
+   "kategorie": "markings",
+   "land": "JP",
+   "frage": "In Japan bedeutet eine gelbe statt weiße Mittellinie meist …",
+   "optionen": [
+    "Überholverbot",
+    "Radweg",
+    "Baustelle",
+    "Einbahnstraße"
+   ],
+   "richtig": 0,
+   "erklaerung": "In Japan ist eine gelbe Mittellinie meist ein Überholverbot, die weiße normale Mittellinie erlaubt Überholen.",
+   "merksatz": "Japan: gelb = nicht überholen.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "sun-01",
+   "kategorie": "sun",
+   "frage": "Der Mittagsschatten zeigt nach Norden (außerhalb der Tropen). Auf welcher Halbkugel bist du?",
+   "optionen": [
+    "Nordhalbkugel",
+    "Südhalbkugel"
+   ],
+   "richtig": 0,
+   "erklaerung": "Auf der Nordhalbkugel steht die Mittagssonne im Süden, der Schatten fällt nach Norden.",
+   "merksatz": "Nord-Halbkugel: Sonne Süd, Schatten Nord.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "sonne",
+    "sonne": "S"
+   }
+  },
+  {
+   "id": "sun-02",
+   "kategorie": "sun",
+   "frage": "Der Mittagsschatten zeigt nach Süden (außerhalb der Tropen). Auf welcher Halbkugel bist du?",
+   "optionen": [
+    "Nordhalbkugel",
+    "Südhalbkugel"
+   ],
+   "richtig": 1,
+   "erklaerung": "Auf der Südhalbkugel steht die Sonne mittags im Norden, der Schatten fällt nach Süden.",
+   "merksatz": "Süd-Halbkugel: Sonne Nord, Schatten Süd.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "sonne",
+    "sonne": "N"
+   }
+  },
+  {
+   "id": "sun-03",
+   "kategorie": "sun",
+   "frage": "Wo steht die Sonne mittags auf der Südhalbkugel (außerhalb der Tropen)?",
+   "optionen": [
+    "Im Norden",
+    "Im Süden",
+    "Im Westen",
+    "Im Osten"
+   ],
+   "richtig": 0,
+   "erklaerung": "Südhalbkugel: Mittagssonne im Norden – Australien, Neuseeland, Südafrika.",
+   "merksatz": "Südhalbkugel schaut zur Sonne im Norden.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-04",
+   "kategorie": "sun",
+   "frage": "Morgens zeigt dein Schatten nach …",
+   "optionen": [
+    "Westen",
+    "Osten",
+    "Norden",
+    "Süden"
+   ],
+   "richtig": 0,
+   "erklaerung": "Die Sonne geht im Osten auf, der Schatten fällt nach Westen. Abends ist es umgekehrt.",
+   "merksatz": "Morgens-Schatten nach Westen.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-05",
+   "kategorie": "sun",
+   "frage": "Je höher der Breitengrad, desto … ist der Mittagsschatten.",
+   "optionen": [
+    "länger",
+    "kürzer",
+    "gleich lang",
+    "unsichtbar"
+   ],
+   "richtig": 0,
+   "erklaerung": "Weit weg vom Äquator steht die Sonne niedriger, die Schatten sind länger – Skandinavien hat lange, Thailand kurze Schatten.",
+   "merksatz": "Weit weg vom Äquator = lange Schatten.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-06",
+   "kategorie": "sun",
+   "frage": "Fast kein Schatten mittags, die Sonne steht fast senkrecht. Wo bist du?",
+   "optionen": [
+    "In den Tropen (nahe Äquator)",
+    "In Skandinavien",
+    "In Patagonien",
+    "In Alaska"
+   ],
+   "richtig": 0,
+   "erklaerung": "In den Tropen steht die Sonne mittags fast im Zenit.",
+   "merksatz": "Kein Schatten = Tropen.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-07",
+   "kategorie": "sun",
+   "frage": "Solarpaneele auf Dächern zeigen zum Äquator. Auf der Südhalbkugel also nach …",
+   "optionen": [
+    "Norden",
+    "Süden",
+    "Osten",
+    "Westen"
+   ],
+   "richtig": 0,
+   "erklaerung": "Panele richtet man zum Äquator aus: auf der Südhalbkugel nach Norden, auf der Nordhalbkugel nach Süden.",
+   "merksatz": "Panel zum Äquator hin.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-08",
+   "kategorie": "sun",
+   "frage": "Satellitenschüsseln in Europa zeigen meist nach …",
+   "optionen": [
+    "Südosten/Süden",
+    "Norden",
+    "Nordwesten",
+    "Westen"
+   ],
+   "richtig": 0,
+   "erklaerung": "Die gängigen Fernsehsatelliten stehen über dem Äquator, etwa Astra bei 19,2° Ost. Von Europa aus ist das Südosten/Süden.",
+   "merksatz": "Europa: Schüssel nach Süd-Ost.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "sun-09",
+   "kategorie": "sun",
+   "land": "AU",
+   "frage": "Satellitenschüsseln in Australien zeigen meist nach …",
+   "optionen": [
+    "Norden",
+    "Süden",
+    "Osten",
+    "Westen"
+   ],
+   "richtig": 0,
+   "erklaerung": "Die Satelliten stehen über dem Äquator, also von Australien aus im Norden.",
+   "merksatz": "Australien: Schüssel nach Norden.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "sun-10",
+   "kategorie": "sun",
+   "frage": "Am Morgen blendet die Sonne direkt von vorn. In welche Richtung fährt das Auto?",
+   "optionen": [
+    "Osten",
+    "Westen",
+    "Norden",
+    "Süden"
+   ],
+   "richtig": 0,
+   "erklaerung": "Morgens steht die Sonne im Osten. Blendet sie von vorn, fährst du nach Osten.",
+   "merksatz": "Morgens-Sonne vorn = Fahrt nach Osten.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "pla-01",
+   "kategorie": "plates",
+   "land": "DE",
+   "hinweis": "Weißes Kennzeichen mit blauem EU-Streifen (D) und Plaketten zwischen Ortskürzel und Zahl",
+   "erklaerung": "Deutsche Kennzeichen tragen zwei Plaketten (Siegel und TÜV/Zulassung) zwischen Ortskürzel und Ziffern.",
+   "merksatz": "Deutschland: Plaketten in der Mitte.",
+   "ablenker": [
+    "FR",
+    "PL",
+    "ES",
+    "SE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-02",
+   "kategorie": "plates",
+   "land": "FR",
+   "hinweis": "Weißes Kennzeichen im Format AA-123-AA, blaue Seitenstreifen",
+   "erklaerung": "Frankreichs Kennzeichen haben Buchstaben-Ziffern-Buchstaben, mit Bindestrichen getrennt.",
+   "merksatz": "Frankreich: AB-123-CD mit Strichen.",
+   "ablenker": [
+    "DE",
+    "PL",
+    "ES",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-03",
+   "kategorie": "plates",
+   "land": "ES",
+   "hinweis": "Weißes Kennzeichen mit vier Ziffern und drei Buchstaben (z. B. 1234 ABC)",
+   "erklaerung": "Spanien: vier Ziffern, dann drei Konsonanten, mit EU-Streifen E.",
+   "merksatz": "Spanien: erst Zahlen, dann Buchstaben.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-04",
+   "kategorie": "plates",
+   "land": "SE",
+   "hinweis": "Weißes Kennzeichen mit drei Buchstaben und drei Ziffern (z. B. ABC 123), EU-Streifen S",
+   "erklaerung": "Schweden: drei Buchstaben, dann drei Ziffern, ohne Plaketten.",
+   "merksatz": "Schweden: ABC 123.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "ES",
+    "PL"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-05",
+   "kategorie": "plates",
+   "land": "RU",
+   "hinweis": "Weißes Kennzeichen mit lateinisch-kyrillischen Buchstaben und Regionscode rechts mit kleiner Flagge",
+   "erklaerung": "Russland: Buchstaben, die in beiden Alphabeten existieren, dann Regionscode im Feld rechts neben RUS und Flagge.",
+   "merksatz": "Russland: Region im Kasten rechts.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "JP",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-06",
+   "kategorie": "plates",
+   "land": "GB",
+   "hinweis": "Vorn weiß, hinten gelb, Format AB12 CDE",
+   "erklaerung": "Britische Kennzeichen sind vorn weiß und hinten gelb.",
+   "merksatz": "UK: vorn weiß, hinten gelb.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-07",
+   "kategorie": "plates",
+   "land": "JP",
+   "hinweis": "Kleines gelbes Kennzeichen mit schwarzer Schrift und japanischen Zeichen (Kei-Car)",
+   "erklaerung": "Japan: Kei-Cars (Kleinstwagen) haben gelbe Schilder. Normale Pkw tragen weiße Schilder mit grüner Schrift, dazu Kanji für die Region.",
+   "merksatz": "Japan: Gelb = Kei, Kanji = Region.",
+   "ablenker": [
+    "TH",
+    "DE",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-08",
+   "kategorie": "plates",
+   "land": "TH",
+   "hinweis": "Kennzeichen mit thailändischen Schriftzeichen und Provinzname",
+   "erklaerung": "Thailands Schilder zeigen Thai-Schrift, unten oder oben steht die Provinz.",
+   "merksatz": "Thailand: Thai-Schrift auf dem Schild.",
+   "ablenker": [
+    "JP",
+    "DE",
+    "US",
+    "AU"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-09",
+   "kategorie": "plates",
+   "land": "BR",
+   "hinweis": "Mercosur-Schild mit blauem Band oben und Format ABC1D23",
+   "erklaerung": "Brasilien: Mercosur-Schilder haben ein blaues Band oben mit BRASIL und Flagge, das Format ABC1D23 mischt Buchstaben und Ziffern.",
+   "merksatz": "Brasilien: ABC1D23.",
+   "ablenker": [
+    "DE",
+    "US",
+    "JP",
+    "ZA"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-10",
+   "kategorie": "plates",
+   "land": "AR",
+   "hinweis": "Mercosur-Schild mit blauem Band oben und Format AB 123 CD",
+   "erklaerung": "Argentinien: ähnlich wie Brasilien, aber AB 123 CD und Argentinien im blauen Band.",
+   "merksatz": "Argentinien: AB 123 CD.",
+   "ablenker": [
+    "DE",
+    "US",
+    "JP",
+    "ZA"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-11",
+   "kategorie": "plates",
+   "land": "US",
+   "hinweis": "Kennzeichen mit Bundesstaat-Name und Slogan, ohne EU-Streifen, kleines Format",
+   "erklaerung": "In den USA tragen Schilder Staatsnamen und oft Slogans oder Motive, die Größe ist klein und breit.",
+   "merksatz": "USA: Staatsname auf dem Schild.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-12",
+   "kategorie": "plates",
+   "land": "ZA",
+   "hinweis": "Kennzeichen endet mit Provinzkürzel (z. B. GP für Gauteng)",
+   "erklaerung": "Südafrikanische Schilder tragen am Ende ein Provinzkürzel wie GP oder WP.",
+   "merksatz": "Südafrika: Provinz am Ende.",
+   "ablenker": [
+    "US",
+    "DE",
+    "PL",
+    "FR"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-13",
+   "kategorie": "plates",
+   "land": "AU",
+   "hinweis": "Staatsschilder mit Staatsnamen und Slogan (z. B. Victoria: The Education State)",
+   "erklaerung": "Australien: Jeder Bundesstaat hat eigene Schilder mit Staatsnamen und Motto.",
+   "merksatz": "Australien: Staat + Motto.",
+   "ablenker": [
+    "US",
+    "DE",
+    "JP",
+    "FR"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Kennzeichen"
+  },
+  {
+   "id": "pla-14",
+   "kategorie": "plates",
+   "land": "FR",
+   "hinweis": "Blaue Straßenschilder (weiße Schrift) an Hauswänden",
+   "erklaerung": "Frankreich: Straßennamen stehen auf blauen Emailschildern an Hauswänden.",
+   "merksatz": "Frankreich: Straßenname blau an der Wand.",
+   "ablenker": [
+    "DE",
+    "US",
+    "GB",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Straßenschild"
+  },
+  {
+   "id": "pla-15",
+   "kategorie": "plates",
+   "land": "US",
+   "hinweis": "Grüne Straßenschilder mit weißer Schrift an der Kreuzung (am Mast)",
+   "erklaerung": "USA: Straßennamen stehen auf grünen Schildern, die an Masten über der Kreuzung hängen.",
+   "merksatz": "USA: grüne Schilder am Mast.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Straßenschild"
+  },
+  {
+   "id": "pla-16",
+   "kategorie": "plates",
+   "land": "GB",
+   "hinweis": "Weißes Straßenschild mit schwarzer Schrift an der Hauswand",
+   "erklaerung": "UK: Straßennamen stehen auf weißen Schildern mit schwarzer Schrift, oft an Hauswänden.",
+   "merksatz": "UK: weiß, an der Wand.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "US",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Straßenschild"
+  },
+  {
+   "id": "pla-17",
+   "kategorie": "plates",
+   "frage": "Wie erkennst du ein EU-Kennzeichen?",
+   "optionen": [
+    "Blauer Streifen links mit Länderkürzel",
+    "Gelber Hintergrund",
+    "Roter Rand",
+    "Nur Ziffern"
+   ],
+   "richtig": 0,
+   "erklaerung": "EU-Schilder tragen links einen blauen Streifen mit Sternenkreis und Länderkürzel (D, F, PL, E, S …).",
+   "merksatz": "Blau links = EU.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "nat-01",
+   "kategorie": "nature",
+   "land": "AU",
+   "hinweis": "Eukalyptusbäume mit hellem Stamm, rote Erde im Outback",
+   "erklaerung": "In Australien dominieren Eukalypten, im Landesinneren ist der Boden oft rot.",
+   "merksatz": "Australien: Eukalyptus und rote Erde.",
+   "ablenker": [
+    "SE",
+    "PL",
+    "FR",
+    "DE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-02",
+   "kategorie": "nature",
+   "land": "SE",
+   "hinweis": "Dichter Nadelwald, Seen, Granitfelsen",
+   "erklaerung": "Schweden: Fichten und Kiefern, viele Seen, abgeschliffener Fels.",
+   "merksatz": "Schweden: Nadelwald, Seen, Fels.",
+   "ablenker": [
+    "BR",
+    "TH",
+    "AU",
+    "MX"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-03",
+   "kategorie": "nature",
+   "land": "TH",
+   "hinweis": "Palmen, Reisfelder, üppiges Grün, ockerfarbener Boden",
+   "erklaerung": "Thailand: tropisches Klima, Reisfelder, Palmen, Gummibäume.",
+   "merksatz": "Thailand: Reis und Palmen.",
+   "ablenker": [
+    "SE",
+    "PL",
+    "DE",
+    "AU"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-04",
+   "kategorie": "nature",
+   "land": "BR",
+   "hinweis": "Tropisches Grün und tiefrote Erde",
+   "erklaerung": "Brasilien: je nach Region Regenwald, Cerrado oder Küste; rote Böden sind verbreitet.",
+   "merksatz": "Brasilien: Dschungel und rote Erde.",
+   "ablenker": [
+    "SE",
+    "PL",
+    "DE",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-05",
+   "kategorie": "nature",
+   "land": "AR",
+   "hinweis": "Endlose flache Pampa oder windige Patagonien-Steppe, wenige Bäume",
+   "erklaerung": "Argentinien: Pampa im Zentrum, Steppe und Wind in Patagonien, Anden im Westen.",
+   "merksatz": "Argentinien: Weite und Wind.",
+   "ablenker": [
+    "SE",
+    "TH",
+    "JP",
+    "DE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-06",
+   "kategorie": "nature",
+   "land": "ZA",
+   "hinweis": "Akazien, trockenes Buschland und rötlicher Boden",
+   "erklaerung": "Südafrika: Savanne, Karoo und Fynbos, oft trocken mit rötlicher Erde.",
+   "merksatz": "Südafrika: trocken, Akazien.",
+   "ablenker": [
+    "SE",
+    "TH",
+    "DE",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-07",
+   "kategorie": "nature",
+   "land": "NZ",
+   "hinweis": "Sattgrüne Hügel mit Schafen, Farne und Pinienplantagen",
+   "erklaerung": "Neuseeland: viel Weidewirtschaft, grünes Hügelland, Farnbäume.",
+   "merksatz": "Neuseeland: Schafe auf grünen Hügeln.",
+   "ablenker": [
+    "PL",
+    "FR",
+    "BR",
+    "DE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-08",
+   "kategorie": "nature",
+   "land": "JP",
+   "hinweis": "Steile bewaldete Berge, Zedern, Terrassen-Reisfelder, Bambus",
+   "erklaerung": "Japan: Gebirge, Zedernwälder, kleine Reisfelder.",
+   "merksatz": "Japan: steil, bewaldet, Terrassen.",
+   "ablenker": [
+    "TH",
+    "SE",
+    "PL",
+    "DE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-09",
+   "kategorie": "nature",
+   "land": "RU",
+   "hinweis": "Endlose Birken- und Taigawälder, flaches weites Land",
+   "erklaerung": "Russland: riesige Wälder und Ebenen, Birken sind typisch.",
+   "merksatz": "Russland: Birkenwald und Weite.",
+   "ablenker": [
+    "BR",
+    "TH",
+    "JP",
+    "MX"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-10",
+   "kategorie": "nature",
+   "land": "MX",
+   "hinweis": "Kakteen, Agaven, trockene Berge im Norden/Zentrum",
+   "erklaerung": "Mexiko: viele Wüstenpflanzen im Norden und Zentrum, im Süden tropisch.",
+   "merksatz": "Mexiko: Kakteen und Agaven.",
+   "ablenker": [
+    "SE",
+    "DE",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "nat-11",
+   "kategorie": "nature",
+   "land": "ES",
+   "hinweis": "Olivenhaine, Korkeichen und ockerrote Erde",
+   "erklaerung": "Spanien: Mittelmeerklima mit trockenen Sommern, Olivenbäume, Steineichen.",
+   "merksatz": "Spanien: Olivenhain und Rotocker.",
+   "ablenker": [
+    "SE",
+    "PL",
+    "JP",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Landschaft"
+  },
+  {
+   "id": "arc-01",
+   "kategorie": "architecture",
+   "land": "SE",
+   "hinweis": "Rote Holzhäuser mit weißen Fensterrahmen (Falunrot)",
+   "erklaerung": "Schweden: das typische Falunrot, oft mit weißen Kanten.",
+   "merksatz": "Schweden: rot mit weißen Kanten.",
+   "ablenker": [
+    "BR",
+    "TH",
+    "AU",
+    "MX"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-02",
+   "kategorie": "architecture",
+   "land": "GB",
+   "hinweis": "Backstein-Reihenhäuser mit vielen Schornsteinen",
+   "erklaerung": "UK: Terraced Houses aus Backstein, Schornsteine auf dem Dach.",
+   "merksatz": "UK: Backstein und Schornsteine.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "US",
+    "ZA"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-03",
+   "kategorie": "architecture",
+   "land": "FR",
+   "hinweis": "Holzfensterläden (Volets), Natursteinfassaden, Mansardendächer",
+   "erklaerung": "Frankreich: Fensterläden aus Holz und Steinhäuser sind sehr typisch.",
+   "merksatz": "Frankreich: Läden zu, Stein dran.",
+   "ablenker": [
+    "DE",
+    "PL",
+    "BR",
+    "US"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-04",
+   "kategorie": "architecture",
+   "land": "ES",
+   "hinweis": "Weiß getünchte Häuser mit roten Ziegeldächern und Balkon-Gittern",
+   "erklaerung": "Spanien: besonders im Süden weiße Dörfer, Ziegel, Schmiedeeisen.",
+   "merksatz": "Spanien: weiß, rot, Gitter.",
+   "ablenker": [
+    "SE",
+    "PL",
+    "JP",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-05",
+   "kategorie": "architecture",
+   "land": "MX",
+   "hinweis": "Bunte Hauswände, flache Dächer mit schwarzen Wassertanks",
+   "erklaerung": "Mexiko: flache Dächer mit Wassertanks (Tinacos), bunte Fassaden.",
+   "merksatz": "Mexiko: Tank auf dem Dach.",
+   "ablenker": [
+    "ES",
+    "PL",
+    "DE",
+    "SE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-06",
+   "kategorie": "architecture",
+   "land": "RU",
+   "hinweis": "Plattenbauten (Chruschtschowka) und Holzhäuser mit verzierten Fensterrahmen",
+   "erklaerung": "Russland: Wohnblöcke aus Betonplatten, auf dem Land Holzhäuser mit Schnitzereien.",
+   "merksatz": "Russland: Platte oder Schnitzfenster.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "JP",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-07",
+   "kategorie": "architecture",
+   "land": "US",
+   "hinweis": "Freistehende Holzhäuser mit Vorgarten und Briefkasten am Straßenrand",
+   "erklaerung": "USA: Holzverkleidung, großer Garten, Briefkasten auf Pfosten an der Straße.",
+   "merksatz": "USA: Briefkasten am Straßenrand.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-08",
+   "kategorie": "architecture",
+   "land": "AU",
+   "hinweis": "Holzhaus auf Stelzen mit Veranda und Wellblechdach (Queenslander)",
+   "erklaerung": "Australien: Queenslander-Häuser, oft auf Stelzen.",
+   "merksatz": "Australien: Stelzen und Wellblech.",
+   "ablenker": [
+    "SE",
+    "DE",
+    "FR",
+    "PL"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Haus"
+  },
+  {
+   "id": "arc-09",
+   "kategorie": "architecture",
+   "land": "ZA",
+   "hinweis": "Hohe Mauern mit Elektrozaun und Stacheldraht um jedes Grundstück",
+   "erklaerung": "Südafrika: Sicherheitsmauern sind sehr sichtbar.",
+   "merksatz": "Südafrika: Mauern mit Strom.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "JP",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Zaun"
+  },
+  {
+   "id": "arc-10",
+   "kategorie": "architecture",
+   "land": "GB",
+   "hinweis": "Rote freistehende Postsäule (Pillar Box)",
+   "erklaerung": "Vereinigtes Königreich: rote Briefkästen sind weltberühmt.",
+   "merksatz": "UK: rote Säule.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Briefkasten"
+  },
+  {
+   "id": "arc-11",
+   "kategorie": "architecture",
+   "land": "DE",
+   "hinweis": "Fachwerkhäuser mit sichtbarem Holzgerüst",
+   "erklaerung": "Deutschland: in vielen Regionen sieht man Fachwerk.",
+   "merksatz": "Deutschland: Fachwerk.",
+   "ablenker": [
+    "FR",
+    "PL",
+    "JP",
+    "BR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Haus"
+  },
+  {
+   "id": "lan2-01",
+   "kategorie": "language",
+   "land": "JP",
+   "hinweis": "Kanji, Hiragana und Katakana",
+   "erklaerung": "Japanisch mischt chinesische Zeichen (Kanji) mit zwei Silbenschriften.",
+   "merksatz": "Japan: Schrift-Mix.",
+   "ablenker": [
+    "TH",
+    "KR",
+    "ID",
+    "DE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schrift"
+  },
+  {
+   "id": "lan2-02",
+   "kategorie": "language",
+   "land": "TH",
+   "hinweis": "Rundliche Schrift mit Schleifen (Thai)",
+   "erklaerung": "Thai hat eine eigene Schrift mit Kringeln.",
+   "merksatz": "Thailand: Kringel-Schrift.",
+   "ablenker": [
+    "JP",
+    "IN",
+    "ID",
+    "DE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schrift"
+  },
+  {
+   "id": "lan2-03",
+   "kategorie": "language",
+   "land": "RU",
+   "hinweis": "Kyrillische Buchstaben (Д, Ж, Я, Ы)",
+   "erklaerung": "Russisch nutzt Kyrillisch. Auch die Ukraine tut das, daher auf weitere Hinweise achten.",
+   "merksatz": "Russland: Kyrillisch.",
+   "ablenker": [
+    "DE",
+    "JP",
+    "BR",
+    "MX"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schrift"
+  },
+  {
+   "id": "lan2-04",
+   "kategorie": "language",
+   "land": "PL",
+   "hinweis": "Buchstaben ł, ż, ś, ą, ę",
+   "erklaerung": "Polnisch hat viele Sonderzeichen mit Haken und Querstrich.",
+   "merksatz": "Polen: ł ż ś ą ę.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "ES",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schrift"
+  },
+  {
+   "id": "lan2-05",
+   "kategorie": "language",
+   "land": "SE",
+   "hinweis": "Wort „Rastplats“ auf einem Schild",
+   "erklaerung": "Rastplats heißt Rastplatz auf Schwedisch.",
+   "merksatz": "Schweden: Rastplats.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Wort"
+  },
+  {
+   "id": "lan2-06",
+   "kategorie": "language",
+   "land": "MX",
+   "hinweis": "Stopschild mit „ALTO“ und Schilder „TOPES“",
+   "erklaerung": "In Mexiko steht ALTO auf Stoppschildern, und Topes warnen vor Schwellen.",
+   "merksatz": "Mexiko: ALTO und TOPES.",
+   "ablenker": [
+    "US",
+    "DE",
+    "PL",
+    "BR"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Wort"
+  },
+  {
+   "id": "lan2-07",
+   "kategorie": "language",
+   "land": "BR",
+   "hinweis": "Stoppschild mit „PARE“ und Straßenschilder mit „Rua“",
+   "erklaerung": "Brasilien: PARE für Stopp, Rua für Straße.",
+   "merksatz": "Brasilien: PARE und Rua.",
+   "ablenker": [
+    "US",
+    "DE",
+    "PL",
+    "MX"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Wort"
+  },
+  {
+   "id": "lan2-08",
+   "kategorie": "language",
+   "land": "SE",
+   "hinweis": "Stopschild mit „STOPP“ (zwei P)",
+   "erklaerung": "In Schweden steht STOPP auf dem Schild.",
+   "merksatz": "Schweden: STOPP mit zwei P.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Wort"
+  },
+  {
+   "id": "lan2-09",
+   "kategorie": "language",
+   "land": "JP",
+   "hinweis": "Dreieckiges rotes Stoppschild mit 止まれ",
+   "erklaerung": "Japan: ein auf der Spitze stehendes rotes Dreieck mit 止まれ.",
+   "merksatz": "Japan: Stopp ist ein Dreieck.",
+   "ablenker": [
+    "TH",
+    "DE",
+    "US",
+    "PL"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schild"
+  },
+  {
+   "id": "lan2-10",
+   "kategorie": "language",
+   "land": "DE",
+   "hinweis": "Buchstabe ß, Wörter wie „Umleitung“ und „Ausfahrt“",
+   "erklaerung": "Deutsch hat ß und Umlaute.",
+   "merksatz": "Deutschland: ß und Umlaute.",
+   "ablenker": [
+    "FR",
+    "PL",
+    "SE",
+    "ES"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schrift"
+  },
+  {
+   "id": "lan2-11",
+   "kategorie": "language",
+   "land": "FR",
+   "hinweis": "Wörter wie „Sortie“, „Rue“ und Zeichen œ, ç",
+   "erklaerung": "Französisch: Sortie für Ausfahrt, Rue für Straße.",
+   "merksatz": "Frankreich: Sortie und Rue.",
+   "ablenker": [
+    "DE",
+    "PL",
+    "ES",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Wort"
+  },
+  {
+   "id": "lan2-12",
+   "kategorie": "language",
+   "land": "ZA",
+   "hinweis": "Zweisprachige Schilder (Englisch und Afrikaans)",
+   "erklaerung": "Südafrika: Afrikaans-Wörter wie „Kruising“ neben Englisch.",
+   "merksatz": "Südafrika: zweisprachig.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Schild"
+  },
+  {
+   "id": "roa-01",
+   "kategorie": "roadside",
+   "land": "FR",
+   "hinweis": "Kleine weiße Kilometersteine mit farbiger Kappe",
+   "erklaerung": "Frankreich: Bornes kilométriques am Straßenrand.",
+   "merksatz": "Frankreich: weißer Stein, bunte Kappe.",
+   "ablenker": [
+    "DE",
+    "PL",
+    "US",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Kilometerstein"
+  },
+  {
+   "id": "roa-02",
+   "kategorie": "roadside",
+   "land": "DE",
+   "hinweis": "Autobahn-Wegweiser blau, Landstraßen gelb",
+   "erklaerung": "Deutschland: Autobahnen blau, Bundes-/Landstraßen gelb.",
+   "merksatz": "Deutschland: blau Autobahn, gelb Land.",
+   "ablenker": [
+    "FR",
+    "ES",
+    "GB",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Wegweiser"
+  },
+  {
+   "id": "roa-03",
+   "kategorie": "roadside",
+   "land": "JP",
+   "hinweis": "Autobahn-Wegweiser grün, normale Straßen blau",
+   "erklaerung": "Japan: Expressways grün, normale Straßen blau.",
+   "merksatz": "Japan: grün schnell, blau normal.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "ES",
+    "PL"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Wegweiser"
+  },
+  {
+   "id": "roa-04",
+   "kategorie": "roadside",
+   "land": "GB",
+   "hinweis": "Autobahn-Wegweiser blau, Hauptstraßen grün",
+   "erklaerung": "UK: Motorways blau, Hauptstraßen grün.",
+   "merksatz": "UK: blau Motorway, grün Hauptstraße.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "JP",
+    "PL"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Wegweiser"
+  },
+  {
+   "id": "roa-05",
+   "kategorie": "roadside",
+   "land": "US",
+   "hinweis": "Ampeln hängen an Spanndrähten über der Kreuzung",
+   "erklaerung": "USA: Ampeln sind häufig hängend montiert.",
+   "merksatz": "USA: Ampel hängt am Draht.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Ampel"
+  },
+  {
+   "id": "roa-06",
+   "kategorie": "roadside",
+   "land": "JP",
+   "hinweis": "Horizontale Ampeln mit bläulichem Grün",
+   "erklaerung": "Japan: Ampeln liegen horizontal, Grün wirkt blau.",
+   "merksatz": "Japan: Ampel liegt, Grün ist blau.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "US"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Ampel"
+  },
+  {
+   "id": "roa-07",
+   "kategorie": "roadside",
+   "land": "ZA",
+   "hinweis": "Ampeln heißen „Robots“",
+   "erklaerung": "In Südafrika sagt man Robot für Ampel.",
+   "merksatz": "Südafrika: Robot = Ampel.",
+   "ablenker": [
+    "US",
+    "DE",
+    "JP",
+    "PL"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Wort"
+  },
+  {
+   "id": "roa-08",
+   "kategorie": "roadside",
+   "frage": "Wofür stehen Kilometersteine in GeoGuessr?",
+   "optionen": [
+    "Sie geben Straßennummer und Entfernung – gut für Detailsuche",
+    "Sie zeigen die Himmelsrichtung",
+    "Sie sind nur Dekoration",
+    "Sie zeigen die Jahreszeit"
+   ],
+   "richtig": 0,
+   "erklaerung": "Mit Straßennummer und Kilometer findest du auf Karten die genaue Stelle.",
+   "merksatz": "Stein lesen, Ort finden.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "ext-01",
+   "kategorie": "extra",
+   "land": "PL",
+   "hinweis": "Supermarkt „Biedronka“ (Marienkäfer-Logo)",
+   "erklaerung": "Biedronka ist eine polnische Kette.",
+   "merksatz": "Polen: Marienkäfer.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "ES",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-02",
+   "kategorie": "extra",
+   "land": "ES",
+   "hinweis": "Supermarkt „Mercadona“ (grünes Logo)",
+   "erklaerung": "Mercadona ist Spaniens größte Kette.",
+   "merksatz": "Spanien: Mercadona.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "SE"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-03",
+   "kategorie": "extra",
+   "land": "RU",
+   "hinweis": "Supermarkt „Pjatjorotschka“ (Пятёрочка)",
+   "erklaerung": "Pyaterochka ist eine russische Kette.",
+   "merksatz": "Russland: Пятёрочка.",
+   "ablenker": [
+    "DE",
+    "JP",
+    "BR",
+    "MX"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-04",
+   "kategorie": "extra",
+   "land": "SE",
+   "hinweis": "Staatliches Alkoholgeschäft „Systembolaget“",
+   "erklaerung": "In Schweden gibt es Spirituosen nur dort.",
+   "merksatz": "Schweden: Systembolaget.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-05",
+   "kategorie": "extra",
+   "land": "AU",
+   "hinweis": "Supermarkt „Coles“ (rotes Logo)",
+   "erklaerung": "Coles ist eine australische Kette.",
+   "merksatz": "Australien: Coles.",
+   "ablenker": [
+    "US",
+    "DE",
+    "JP",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-06",
+   "kategorie": "extra",
+   "land": "MX",
+   "hinweis": "Mini-Markt „OXXO“ (rot-gelb)",
+   "erklaerung": "OXXO ist in Mexiko überall.",
+   "merksatz": "Mexiko: OXXO.",
+   "ablenker": [
+    "ES",
+    "US",
+    "DE",
+    "JP"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-07",
+   "kategorie": "extra",
+   "land": "AR",
+   "hinweis": "Tankstelle „YPF“",
+   "erklaerung": "YPF ist Argentiniens größte Tankstellen-Marke.",
+   "merksatz": "Argentinien: YPF.",
+   "ablenker": [
+    "DE",
+    "BR",
+    "JP",
+    "US"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Tankstelle"
+  },
+  {
+   "id": "ext-08",
+   "kategorie": "extra",
+   "land": "DE",
+   "hinweis": "Tankstelle „Aral“ (blau)",
+   "erklaerung": "Aral ist in Deutschland sehr verbreitet.",
+   "merksatz": "Deutschland: Aral.",
+   "ablenker": [
+    "FR",
+    "PL",
+    "JP",
+    "US"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Tankstelle"
+  },
+  {
+   "id": "ext-09",
+   "kategorie": "extra",
+   "land": "JP",
+   "hinweis": "Konbini „Lawson“ oder „FamilyMart“",
+   "erklaerung": "Lawson/FamilyMart gibt es in Japan an jeder Ecke.",
+   "merksatz": "Japan: Lawson.",
+   "ablenker": [
+    "DE",
+    "PL",
+    "US",
+    "FR"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-10",
+   "kategorie": "extra",
+   "land": "ZA",
+   "hinweis": "Supermarkt „Pick n Pay“ oder „Shoprite“",
+   "erklaerung": "Pick n Pay und Shoprite sind südafrikanisch.",
+   "merksatz": "Südafrika: Pick n Pay.",
+   "ablenker": [
+    "US",
+    "DE",
+    "JP",
+    "FR"
+   ],
+   "schwierigkeit": 3,
+   "fokus": "Geschäft"
+  },
+  {
+   "id": "ext-11",
+   "kategorie": "extra",
+   "land": "GB",
+   "hinweis": "Schwarzes Taxi (Black Cab)",
+   "erklaerung": "In London sind schwarze Cabs typisch.",
+   "merksatz": "UK: schwarzes Taxi.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "ES"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Fahrzeug"
+  },
+  {
+   "id": "ext-12",
+   "kategorie": "extra",
+   "land": "TH",
+   "hinweis": "Tuk-Tuk als Taxi",
+   "erklaerung": "Tuk-Tuks sind in Thailand überall.",
+   "merksatz": "Thailand: Tuk-Tuk.",
+   "ablenker": [
+    "DE",
+    "US",
+    "PL",
+    "FR"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Fahrzeug"
+  },
+  {
+   "id": "ext-13",
+   "kategorie": "extra",
+   "land": "US",
+   "hinweis": "Gelber Schulbus",
+   "erklaerung": "Gelbe Schulbusse sind in den USA verbreitet.",
+   "merksatz": "USA: gelber Schulbus.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Fahrzeug"
+  },
+  {
+   "id": "ext-14",
+   "kategorie": "extra",
+   "land": "ZA",
+   "hinweis": "Minibus-Taxi (Toyota Quantum)",
+   "erklaerung": "Minibustaxis sind das wichtigste Massentransportmittel.",
+   "merksatz": "Südafrika: Minibus-Taxi.",
+   "ablenker": [
+    "DE",
+    "FR",
+    "PL",
+    "JP"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Fahrzeug"
+  },
+  {
+   "id": "ext-15",
+   "kategorie": "extra",
+   "land": "AU",
+   "hinweis": "Warnschild mit Känguru",
+   "erklaerung": "Känguru-Schilder gibt es in Australien.",
+   "merksatz": "Australien: Känguru.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "JP",
+    "US"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schild"
+  },
+  {
+   "id": "ext-16",
+   "kategorie": "extra",
+   "land": "NZ",
+   "hinweis": "Warnschild mit Kiwi-Vogel",
+   "erklaerung": "Kiwi-Schilder gibt es in Neuseeland.",
+   "merksatz": "Neuseeland: Kiwi.",
+   "ablenker": [
+    "DE",
+    "SE",
+    "JP",
+    "US"
+   ],
+   "schwierigkeit": 2,
+   "fokus": "Schild"
+  },
+  {
+   "id": "ext-17",
+   "kategorie": "extra",
+   "land": "SE",
+   "hinweis": "Warnschild mit Elch",
+   "erklaerung": "Elchschilder sind in Schweden verbreitet.",
+   "merksatz": "Schweden: Elch.",
+   "ablenker": [
+    "DE",
+    "AU",
+    "JP",
+    "US"
+   ],
+   "schwierigkeit": 1,
+   "fokus": "Schild"
+  }
+ ]
+}

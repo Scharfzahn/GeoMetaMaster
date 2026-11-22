@@ -327,7 +327,8 @@ function diagramSVG(d) {
 /* ============================================================
    Fragen erzeugen
    ============================================================ */
-function distractors(iso, n, cat) {
+function distractors(iso, n, cat, forced) {
+  if (forced && forced.length) { const f = shuffle(forced.filter(i => DB.laender[i] && i !== iso)); if (f.length >= n) return f.slice(0, n); }
   const sim = shuffle((L(iso).aehnlich || []).filter(i => DB.laender[i] && i !== iso));
   const inCat = new Set(); (BYCAT[cat] || []).forEach(c => c.land && inCat.add(c.land));
   const rest = shuffle(Object.keys(DB.laender).filter(i => i !== iso && !sim.includes(i)));
@@ -344,7 +345,7 @@ function qMC(card) {
     const opts = shuffle(card.optionen.map((o, i) => ({ label: esc(o), ok: i === card.richtig })));
     return { kind: 'mc', card, prompt: nl2br(card.frage), opts, answer: esc(card.optionen[card.richtig]) };
   }
-  const ids = shuffle([card.land, ...distractors(card.land, 3, card.kategorie)]);
+  const ids = shuffle([card.land, ...distractors(card.land, 3, card.kategorie, card.ablenker)]);
   return { kind: 'mc', card, prompt: promptFor(card), opts: ids.map(i => ({ label: landLabel(i), ok: i === card.land })), answer: landLabel(card.land) };
 }
 function qTF(card) {
@@ -357,7 +358,7 @@ function qTF(card) {
     const idx = truth ? card.richtig : pick(wrong);
     return { kind: 'tf', card, text: `${nl2br(card.frage)}<div class="tf-ans">→ ${esc(card.optionen[idx])}</div>`, truth, answer: esc(card.optionen[card.richtig]) };
   }
-  const truth = rnd() < .5; const iso = truth ? card.land : distractors(card.land, 1, card.kategorie)[0];
+  const truth = rnd() < .5; const iso = truth ? card.land : distractors(card.land, 1, card.kategorie, card.ablenker)[0];
   return { kind: 'tf', card, text: `Das gehört zu <b>${landLabel(iso)}</b>.`, truth, answer: landLabel(card.land) };
 }
 function qMap(card) {
@@ -367,7 +368,7 @@ function qMap(card) {
 function qCompare(card) {
   if (!card.land) return null;
   const vis = hasVisual(card);
-  let cand = CARDS.filter(c => c.land && c.land !== card.land && c.kategorie === card.kategorie && hasVisual(c) === vis && (vis || c.hinweis));
+  let cand = CARDS.filter(c => c.land && !c.optionen && (!c.modi || c.modi.includes('compare')) && c.land !== card.land && c.kategorie === card.kategorie && hasVisual(c) === vis && (vis || c.hinweis));
   if (!cand.length) return null;
   const sim = cand.filter(c => (L(card.land).aehnlich || []).includes(c.land));
   const other = pick(sim.length && rnd() < .7 ? sim : cand);
@@ -377,17 +378,19 @@ function qCompare(card) {
 }
 function qPairs(cards) {
   const seen = new Set(); const use = [];
-  for (const c of cards) { if (c.land && !seen.has(c.land) && (hasVisual(c) || c.hinweis)) { seen.add(c.land); use.push(c); } if (use.length >= 5) break; }
+  for (const c of cards) { if (c.land && !c.optionen && (!c.modi || c.modi.includes('pairs')) && !seen.has(c.land) && (hasVisual(c) || c.hinweis)) { seen.add(c.land); use.push(c); } if (use.length >= 5) break; }
   if (use.length < 4) return null;
   return { kind: 'pairs', cards: use, card: use[0], rightOrder: shuffle(use.map(c => c.land)), leftOrder: shuffle(use.map(c => c.id)) };
 }
 const KIND_W = { mc: 4, tf: 2, map: 1.4, compare: 1.6 };
 function makeQuestion(card, avoidKind) {
   const kinds = [];
-  const add = (k, ok) => ok && kinds.push([k, KIND_W[k] * (k === avoidKind ? .15 : 1)]);
+  const allowed = k => !card.modi || card.modi.includes(k);
+  const add = (k, ok) => ok && allowed(k) && kinds.push([k, KIND_W[k] * (k === avoidKind ? .15 : 1)]);
   add('mc', true); add('tf', true);
-  add('map', !!card.land && WORLDIDS.has(card.land));
-  add('compare', !!card.land);
+  add('map', !card.optionen && !!card.land && WORLDIDS.has(card.land));
+  add('compare', !card.optionen && !!card.land);
+  if (!kinds.length) kinds.push(['mc', 1]);
   let total = kinds.reduce((a, k) => a + k[1], 0), r = rnd() * total, kind = 'mc';
   for (const [k, w] of kinds) { if ((r -= w) <= 0) { kind = k; break; } }
   const q = ({ mc: qMC, tf: qTF, map: qMap, compare: qCompare }[kind])(card);
