@@ -241,3 +241,23 @@ em { font-style: normal; color: var(--gold); }
 }
 @media (max-height: 560px) and (orientation: landscape) { .qmedia .media { max-height: 62dvh; } .qprompt { font-size: 1.05rem; } .rbody { gap: 8px; } .opt { min-height: 52px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+/* Lernphase, Flip-Karten, Spickzettel */
+.flagbig { text-align: center; font-size: 4.5rem; line-height: 1; padding: 6px 0; }
+.studycard { max-width: 760px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.st-cat { color: var(--mut); font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; text-align: center; }
+.st-title { text-align: center; font-size: 1.7rem; margin: 0; }
+.st-q { font-size: 1.15rem; font-weight: 700; text-align: center; margin: 0; } .st-a { font-size: 1.1rem; text-align: center; color: var(--ok); font-weight: 700; margin: 0; }
+.fbwrap.study .fbbox, .fbbox.st { background: #0f1c3a; border-color: var(--accent2); }
+.stbtns { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 10px; } .linkbtn { display: block; margin: 8px auto 0; color: var(--mut); text-decoration: underline; padding: 6px 10px; }
+.flipans { max-width: 760px; width: 100%; margin: 0 auto; background: var(--surf2); border: 2px solid var(--accent); border-radius: 18px; padding: 14px 16px; animation: slidein .25s; }
+.fa-main { font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; text-align: center; }
+#reveal { max-width: 760px; width: 100%; margin: 0 auto; }
+.fliprate { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 760px; width: 100%; margin: 0 auto; }
+.fliprate .bad { background: #5b1a1a; border-color: var(--bad); } .fliprate .good { background: #064e3b; border-color: var(--ok); }
+.sheetlist { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 14px; }
+.sheetitem { background: var(--surf); border: 1px solid var(--line); border-left: 5px solid var(--c, var(--accent)); border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.si-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; } .si-t { margin: 0; font-weight: 600; } .sheetitem .mut { margin: 0; font-size: .9rem; } .sheetitem .fb-mem { margin: 0; font-size: .92rem; } .si-m .media { max-height: 190px; }
+a.btn { text-decoration: none; color: var(--text); }
+.maphint { color: var(--mut); font-size: .85rem; margin-top: 6px; }
+@media print { #topbar, #nav, .noprint, .back { display: none !important; } body, html { background: #fff; color: #000; height: auto; } #shell { display: block; height: auto; } #app { overflow: visible; max-width: none; } .sheetitem, .fb-mem { background: #fff; color: #000; border-color: #999; } .mut { color: #333; } }

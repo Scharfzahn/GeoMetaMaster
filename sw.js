@@ -2,7 +2,7 @@
    - App-Shell + Daten: Stale-While-Revalidate (offline nutzbar, Updates kommen beim nächsten Start)
    - Bilder von Wikimedia: Cache-first mit CORS-Fetch (kein "opaque"-Quota-Overhead), max. 400 Einträge
    Bei Änderungen an index.html/app.js/style.css VERSION erhöhen, damit der Shell-Cache neu aufgebaut wird. */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL = 'geometa-shell-' + VERSION;
 const IMGS = 'geometa-img-v1';
 const MAX_IMGS = 400;

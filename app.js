@@ -382,18 +382,31 @@ function qPairs(cards) {
   if (use.length < 4) return null;
   return { kind: 'pairs', cards: use, card: use[0], rightOrder: shuffle(use.map(c => c.land)), leftOrder: shuffle(use.map(c => c.id)) };
 }
-const KIND_W = { mc: 4, tf: 2, map: 1.4, compare: 1.6 };
-function makeQuestion(card, avoidKind) {
-  const kinds = [];
-  const allowed = k => !card.modi || card.modi.includes(k);
-  const add = (k, ok) => ok && allowed(k) && kinds.push([k, KIND_W[k] * (k === avoidKind ? .15 : 1)]);
-  add('mc', true); add('tf', true);
+const KIND_W = { mc: 3, feature: 2.4, tf: 1.4, flip: 1.8, map: 1.2, compare: 1.3 };
+// Rückwärts-Frage: Land → welches Merkmal passt?
+function qFeature(card) {
+  if (card.optionen || !card.land || !card.hinweis) return null;
+  const byLand = {};
+  CARDS.forEach(c => { if (c.kategorie === card.kategorie && !c.optionen && c.land && c.land !== card.land && c.hinweis && !byLand[c.land]) byLand[c.land] = c; });
+  const wrong = sample(Object.values(byLand), 3); if (wrong.length < 3) return null;
+  const opts = shuffle([{ label: esc(card.hinweis), ok: true }, ...wrong.map(c => ({ label: esc(c.hinweis), ok: false }))]);
+  return { kind: 'mc', feature: true, card, prompt: `Was ist typisch für <b>${landLabel(card.land)}</b>? <small>${esc(CATS[card.kategorie].name)}</small>`, opts, answer: esc(card.hinweis) };
+}
+// Selbsteinschätzung wie bei Karteikarten
+function qFlip(card) { return { kind: 'flip', card, answer: card.optionen ? esc(card.optionen[card.richtig]) : landLabel(card.land) }; }
+function makeQuestion(card, avoid) {
+  const av = avoid instanceof Set ? avoid : new Set(avoid ? [avoid] : []);
+  const allowed = k => !card.modi || card.modi.includes(k) || k === 'flip';
+  const cand = [];
+  const add = (k, ok) => ok && allowed(k) && cand.push([k, KIND_W[k]]);
+  add('mc', true); add('tf', true); add('flip', true);
+  add('feature', !card.optionen && !!card.land && !!card.hinweis);
   add('map', !card.optionen && !!card.land && WORLDIDS.has(card.land));
   add('compare', !card.optionen && !!card.land);
-  if (!kinds.length) kinds.push(['mc', 1]);
-  let total = kinds.reduce((a, k) => a + k[1], 0), r = rnd() * total, kind = 'mc';
-  for (const [k, w] of kinds) { if ((r -= w) <= 0) { kind = k; break; } }
-  const q = ({ mc: qMC, tf: qTF, map: qMap, compare: qCompare }[kind])(card);
+  let list = cand.filter(([k]) => !av.has(k)); if (!list.length) list = cand;
+  let total = list.reduce((a, k) => a + k[1], 0), r = rnd() * total, kind = 'mc';
+  for (const [k, w] of list) { if ((r -= w) <= 0) { kind = k; break; } }
+  const q = ({ mc: qMC, tf: qTF, map: qMap, compare: qCompare, feature: qFeature, flip: qFlip }[kind])(card);
   return q || qMC(card);
 }
 function buildQuestions(cards, n = 10, usePairs = true) {
@@ -402,7 +415,7 @@ function buildQuestions(cards, n = 10, usePairs = true) {
   const need = n - (pairQ ? 1 : 0);
   const order = []; while (order.length < need) { const batch = shuffle(cards); if (order.length && batch[0] === order[order.length - 1] && batch.length > 1) batch.push(batch.shift()); order.push(...batch); }
   order.length = need;
-  const last = {}; const qs = order.map(c => { const q = makeQuestion(c, last[c.id]); last[c.id] = q.kind; return q; });
+  const used = {}; const qs = order.map(c => { const u = used[c.id] = used[c.id] || new Set(); const q = makeQuestion(c, u); u.add(q.feature ? 'feature' : q.kind); return q; });
   if (pairQ) qs.splice(Math.min(qs.length, Math.floor(qs.length * (.45 + rnd() * .4))), 0, pairQ);
   return qs;
 }
@@ -419,7 +432,8 @@ function startRound(cfg) {
   R = { ...cfg, lives, maxLives: lives, queue: cfg.questions.slice(), i: 0, phase: 'main', total: cfg.questions.length, correct: 0, wrongQs: [], streak: 0, xp: 0, flags: {}, retryTries: {}, t0: Date.now(), answered: false };
   roundEl().hidden = false; document.body.classList.add('in-round');
   history.pushState({ round: 1 }, '');
-  drawRoundShell(); showQuestion(); sfx('click');
+  drawRoundShell(); sfx('click');
+  if (cfg.study && cfg.study.length) { R.study = cfg.study; R.studyI = 0; R.studying = true; showStudy(); } else showQuestion();
 }
 function drawRoundShell() {
   roundEl().innerHTML = `<div class="rwrap">
@@ -442,18 +456,46 @@ function showQuestion() {
   $('#rbar').style.width = pct(done / R.queue.length) + '%';
   $('#rbar').classList.toggle('retry', R.phase === 'retry');
   $('#rtitle').innerHTML = R.phase === 'retry' ? `🔁 Fehler-Wiederholung <b>${R.i + 1}/${R.queue.length}</b>` : `${esc(R.title)} <b>${R.i + 1}/${R.queue.length}</b>`;
-  drawHearts(); $('#fb').hidden = true; $('#fb').innerHTML = '';
+  drawHearts(); $('#fb').hidden = true; $('#fb').innerHTML = ''; $('#fb').className = 'fbwrap'; R.studying = false;
   const body = $('#rbody'); body.className = 'rbody k-' + q.kind; body.scrollTop = 0;
-  ({ mc: renderMC, tf: renderTF, map: renderMap, compare: renderCompare, pairs: renderPairs }[q.kind])(q, body);
+  ({ mc: renderMC, tf: renderTF, map: renderMap, compare: renderCompare, pairs: renderPairs, flip: renderFlip }[q.kind])(q, body);
   body.classList.remove('enter'); void body.offsetWidth; body.classList.add('enter');
   const nx = R.queue[R.i + 1]; if (nx) (nx.cards || [nx.card]).forEach(preloadCard);
+}
+function showStudy() {
+  const cards = R.study, i = R.studyI, c = cards[i];
+  $('#rbar').style.width = pct(i / cards.length) + '%'; $('#rbar').classList.remove('retry');
+  $('#rtitle').innerHTML = `📖 Erst ansehen – dann abfragen <b>${i + 1}/${cards.length}</b>`;
+  drawHearts();
+  const cat = CATS[c.kategorie];
+  const vis = hasVisual(c) ? `<div class="qmedia">${mediaHTML(c, { eager: true })}</div>` : '';
+  const feat = c.optionen ? `<p class="st-q">${nl2br(c.frage)}</p><p class="st-a">✅ ${esc(c.optionen[c.richtig])}</p>` : (c.hinweis ? `<div class="clue"><span class="clue-ico">${cat.icon}</span><p>${nl2br(c.hinweis)}</p></div>` : '');
+  const body = $('#rbody'); body.className = 'rbody k-study enter'; body.scrollTop = 0;
+  body.innerHTML = `<div class="studycard"><div class="st-cat">${cat.icon} ${esc(cat.name)}</div><h2 class="st-title">${c.land ? landLabel(c.land) : 'Merke dir'}</h2>${vis}${feat}${c.erklaerung ? `<p class="fb-exp">${nl2br(c.erklaerung)}</p>` : ''}${c.merksatz ? `<p class="fb-mem">💡 <b>Merksatz:</b> ${nl2br(c.merksatz)}</p>` : ''}</div>`;
+  const fb = $('#fb'); fb.className = 'fbwrap study'; fb.hidden = false;
+  fb.innerHTML = `<div class="fbbox st"><div class="stbtns">${i ? '<button class="btn big" id="stprev">‹ Zurück</button>' : ''}<button class="btn primary big" id="stnext">${i < cards.length - 1 ? 'Weiter ›' : 'Quiz starten 🎯'}</button></div><button class="linkbtn" id="stskip">Lernkarten überspringen</button></div>`;
+  const go = () => { R.studying = false; showQuestion(); };
+  $('#stnext').onclick = () => { sfx('click'); if (i < cards.length - 1) { R.studyI++; showStudy(); } else go(); };
+  if ($('#stprev')) $('#stprev').onclick = () => { R.studyI--; showStudy(); };
+  $('#stskip').onclick = go;
+  cards.slice(i + 1, i + 3).forEach(preloadCard);
+}
+function renderFlip(q, body) {
+  const card = q.card;
+  const clue = card.optionen ? `<div class="clue"><span class="clue-ico">${CATS[card.kategorie].icon}</span><p>${nl2br(card.frage)}</p></div>${hasVisual(card) ? `<div class="qmedia">${mediaHTML(card, { eager: true })}</div>` : ''}` : clueHTML(card);
+  body.innerHTML = `<div class="qprompt">Weißt du es? <small>${card.optionen ? 'Überlege die Antwort, dann decke auf.' : 'Welches Land? Überlege, dann decke auf.'}</small></div>${clue}
+    <div class="flipans" id="flipans" hidden><div class="fa-main">${q.answer}</div>${card.erklaerung ? `<p class="fb-exp">${nl2br(card.erklaerung)}</p>` : ''}${card.merksatz ? `<p class="fb-mem">💡 <b>Merksatz:</b> ${nl2br(card.merksatz)}</p>` : ''}</div>
+    <button class="btn primary big" id="reveal">Antwort zeigen</button>
+    <div class="fliprate" id="fliprate" hidden><button class="btn big bad" data-v="0">🔁 Nochmal</button><button class="btn big good" data-v="1">✅ Gewusst</button></div>`;
+  $('#reveal').onclick = () => { sfx('click'); $('#flipans').hidden = false; $('#reveal').hidden = true; $('#fliprate').hidden = false; $('#flipans').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
+  $$('#fliprate button', body).forEach(b => b.onclick = () => { if (R.answered) return; answered(q, b.dataset.v === '1', { answer: q.answer, skipPanel: true }); });
 }
 function clueHTML(card) {
   if (hasVisual(card)) return `<div class="qmedia">${mediaHTML(card, { eager: true })}</div>`;
   return `<div class="clue"><span class="clue-ico">${CATS[card.kategorie].icon}</span><p>${nl2br(card.hinweis || card.fokus || '')}</p></div>`;
 }
 function renderMC(q, body) {
-  body.innerHTML = `<div class="qprompt">${q.prompt}</div>${q.card.optionen ? (hasVisual(q.card) ? `<div class="qmedia">${mediaHTML(q.card, { eager: true })}</div>` : '') : clueHTML(q.card)}
+  body.innerHTML = `<div class="qprompt">${q.prompt}</div>${q.feature ? `<div class="flagbig">${L(q.card.land).flagge}</div>` : q.card.optionen ? (hasVisual(q.card) ? `<div class="qmedia">${mediaHTML(q.card, { eager: true })}</div>` : '') : clueHTML(q.card)}
     <div class="opts">${q.opts.map((o, i) => `<button class="opt" data-i="${i}"><kbd>${i + 1}</kbd><span>${o.label}</span></button>`).join('')}</div>`;
   $$('.opt', body).forEach(b => b.onclick = () => {
     if (R.answered) return; const i = +b.dataset.i, ok = q.opts[i].ok;
@@ -531,7 +573,14 @@ function createMap(host, { cls = () => '', onTap, regions = true } = {}) {
   });
   const up = e => {
     const had = ptrs.has(e.pointerId); ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = null;
-    if (had && down && !down.moved && down.n === 1 && e.type === 'pointerup') { const el = document.elementFromPoint(e.clientX, e.clientY); if (el && el.dataset && el.dataset.id) { onTap && onTap(el.dataset.id, el); } }
+    if (had && down && !down.moved && down.n === 1 && e.type === 'pointerup') {
+      if (vb.w > W * 0.31) { zoomAt(e.clientX, e.clientY, 0.28); }       // erst hineinzoomen, damit kleine Länder treffbar sind
+      else {
+        let el = document.elementFromPoint(e.clientX, e.clientY); let id = el && el.dataset && el.dataset.id;
+        if (!id) { let best = 1e9; svg.querySelectorAll('path').forEach(p => { const r = p.getBoundingClientRect(), cx = Math.max(r.left, Math.min(e.clientX, r.right)), cy = Math.max(r.top, Math.min(e.clientY, r.bottom)), d = Math.hypot(cx - e.clientX, cy - e.clientY); if (d < best && d < 22) { best = d; id = p.dataset.id; el = p; } }); }
+        if (id) onTap && onTap(id, el);
+      }
+    }
     if (!ptrs.size) down = null;
   };
   svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
@@ -560,7 +609,7 @@ const REGIONS = [
 ];
 
 function renderMap(q, body) {
-  body.innerHTML = `<div class="qprompt">Tippe das Land auf der Karte an <small>Zoomen: Pinch, Mausrad oder ＋/－</small></div>
+  body.innerHTML = `<div class="qprompt">Tippe das Land auf der Karte an <small>Erst aufs Gebiet tippen = hineinzoomen, dann das Land antippen. ＋/－ und Pinch gehen auch.</small></div>
     <div class="maprow">${clueHTML(q.card).replace('class="qmedia"', 'class="qmedia small"')}<div class="mapbox" id="qmap"></div></div>
     <div class="mapact"><div id="mapsel" class="mapsel">Noch nichts gewählt</div><button class="btn primary big" id="mapok" disabled>Bestätigen</button></div>`;
   let chosen = null;
@@ -584,14 +633,16 @@ function answered(q, ok, info = {}) {
   } else if (main) { srsUpdate(q.card, ok, R.flags); }
   if (ok) {
     R.streak++;
-    if (q.kind !== 'pairs') xpGain = main ? 10 + Math.min(R.streak, 5) * 2 : 3;
+    if (q.kind !== 'pairs') xpGain = main ? (q.kind === 'flip' ? 8 : 10 + Math.min(R.streak, 5) * 2) : 3;
     if (main) R.correct++; sfx('right');
   } else {
     R.streak = 0; sfx('wrong'); buzz(90);
-    if (main) { R.wrongQs.push(q); if (R.maxLives) R.lives--; }
+    if (main) { R.wrongQs.push(q); if (R.maxLives && q.kind !== 'flip') R.lives--; }
   }
   xpGain = Math.round(xpGain * (R.xpMult || 1)); R.xp += xpGain; addXP(xpGain);
   drawHearts(); save(); updateChips();
+  const dead0 = main && R.maxLives && R.lives <= 0;
+  if (info.skipPanel) { floatXP($('#rbody'), xpGain ? '+' + xpGain : ''); return advance(q, ok, main, dead0); }
   const fb = $('#fb'), card = q.card;
   const head = ok ? pick(['Richtig!', 'Sauber!', 'Genau!', 'Top!', 'Stark!']) : (q.kind === 'tf' || q.kind === 'pairs' ? 'Nicht ganz.' : 'Leider falsch.');
   let body = '';
@@ -609,19 +660,20 @@ function answered(q, ok, info = {}) {
     <button class="btn primary big" id="nextbtn">${dead ? 'Weiter (keine Leben mehr)' : 'Weiter'}</button></div>`;
   fb.hidden = false; $('#nextbtn').focus({ preventScroll: true });
   floatXP($('#rbody'), xpGain ? '+' + xpGain : '');
-  $('#nextbtn').onclick = () => {
-    sfx('click');
-    if (dead) return finishRound('dead');
-    // falsch im Retry → am Ende nochmal (max. 2x)
-    if (!main && !ok) { const k = q.card.id; R.retryTries[k] = (R.retryTries[k] || 0) + 1; if (R.retryTries[k] < 3) R.queue.push(q.kind === 'pairs' ? makeQuestion(q.card) : makeQuestion(q.card, q.kind)); }
-    R.i++; showQuestion();
-  };
+  $('#nextbtn').onclick = () => advance(q, ok, main, dead);
+}
+function advance(q, ok, main, dead) {
+  sfx('click');
+  if (dead) return finishRound('dead');
+  // falsch im Retry → am Ende nochmal (max. 2x), jedes Mal in anderer Frageart
+  if (!main && !ok) { const k = q.card.id; R.retryTries[k] = (R.retryTries[k] || 0) + 1; if (R.retryTries[k] < 3) R.queue.push(makeQuestion(q.card, new Set([q.feature ? 'feature' : q.kind]))); }
+  R.i++; showQuestion();
 }
 function endPhase() {
   if (R.phase === 'main' && R.wrongQs.length) {
     const ids = [...new Set(R.wrongQs.flatMap(q => q.kind === 'pairs' ? q.cards.filter(c => R.flags[c.id]?.wrong) : [q.card]).map(c => c.id))];
     const cards = ids.map(id => BYID[id]);
-    R.phase = 'retry'; R.queue = cards.map(c => { const k = R.wrongQs.find(q => q.card && q.card.id === c.id)?.kind; return makeQuestion(c, k); }); R.i = 0;
+    R.phase = 'retry'; R.queue = cards.map(c => { const k = R.wrongQs.find(q => q.card && q.card.id === c.id)?.kind; return makeQuestion(c, new Set(k ? [k] : [])); }); R.i = 0;
     roundEl().querySelector('.rbody').innerHTML = `<div class="interlude"><div class="big">🔁</div><h2>Fehler wiederholen</h2><p>${cards.length} Karte${cards.length > 1 ? 'n' : ''} warten noch einmal auf dich – so bleibt es hängen.</p><button class="btn primary big" id="goretry">Los geht’s</button></div>`;
     $('#fb').hidden = true; $('#goretry').onclick = () => { sfx('click'); showQuestion(); }; $('#rtitle').textContent = '';
     return;
@@ -677,14 +729,14 @@ const lessonUnlocked = (cat, i) => i === 0 || !!S.lessons[cat]?.[i - 1]?.done;
 function startLesson(cat, idx) {
   const cards = lessonsOf(cat)[idx]; if (!cards) return;
   const qs = buildQuestions(cards, 10, true);
-  startRound({ kind: 'lesson', cat, idx, title: `${CATS[cat].name} · Lektion ${idx + 1}`, questions: qs, repeat: () => startLesson(cat, idx) });
+  startRound({ kind: 'lesson', cat, idx, title: `${CATS[cat].name} · Lektion ${idx + 1}`, questions: qs, study: cards.filter(c => isNew(c.id)), repeat: () => startLesson(cat, idx) });
 }
 function startPractice({ cat, land, weak } = {}) {
   let pool = CARDS; if (cat) pool = BYCAT[cat]; if (land) pool = BYLAND[land] || [];
   const sel = selectCards(pool, 10, { weak });
   const title = weak ? 'Schwächen' : land ? `${L(land).flagge} ${L(land).name}` : cat ? CATS[cat].name : 'Mixed';
   const qs = buildQuestions(sel, 10, true);
-  startRound({ kind: 'practice', title, questions: qs, repeat: () => startPractice({ cat, land, weak }) });
+  startRound({ kind: 'practice', title, questions: qs, study: sel.filter(c => isNew(c.id)).slice(0, 5), repeat: () => startPractice({ cat, land, weak }) });
 }
 function bossStatus(cat) {
   const st = poolStats(BYCAT[cat]); const need = Math.min(6, Math.ceil(st.total * .6));
@@ -722,7 +774,7 @@ function render() {
   if (R) return;
   const [, view = 'home', arg] = (location.hash || '#/home').split('/');
   const v = VIEWS[view] ? view : 'home';
-  $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.tab === (v === 'cat' ? 'paths' : v)));
+  $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.tab === (v === 'cat' || v === 'sheet' ? 'paths' : v)));
   app().innerHTML = VIEWS[v](decodeURIComponent(arg || ''));
   app().scrollTop = 0; window.scrollTo(0, 0);
   if (VIEWS[v].after) VIEWS[v].after(decodeURIComponent(arg || ''));
@@ -769,7 +821,7 @@ VIEWS.cat = id => {
     <section class="cathead card" style="--c:${c.farbe}">${ring(st.avg, c.icon, c.farbe)}<div><h1>${esc(c.name)}</h1><p>${esc(c.beschreibung || '')}</p>
     <div class="sub">${st.total} Karten · ${st.seen} gesehen · ${st.due} fällig · Ø Fach ${(st.avg * 5).toFixed(1)}/5</div></div></section>
     <div class="actions row"><button class="btn primary big" data-act="practice" data-cat="${id}">🔁 Üben (Wiederholung)</button>
-    <button class="btn big ${boss.ok ? '' : 'lockb'}" data-act="boss" data-cat="${id}">${boss.ok ? '👹' : '🔒'} Boss-Level${bossDone ? ` ✓${bossDone > 1 ? '×' + bossDone : ''}` : ''}<small>${boss.ok ? `Abzeichen: ${esc(c.abzeichen?.name || '')}` : `Sieh erst ${boss.need} Karten (${boss.seen}/${boss.total})`}</small></button></div>
+    <a class="btn big" href="#/sheet/cat:${id}">📖 Spickzettel<small>alles auf einer Seite</small></a><button class="btn big ${boss.ok ? '' : 'lockb'}" data-act="boss" data-cat="${id}">${boss.ok ? '👹' : '🔒'} Boss-Level${bossDone ? ` ✓${bossDone > 1 ? '×' + bossDone : ''}` : ''}<small>${boss.ok ? `Abzeichen: ${esc(c.abzeichen?.name || '')}` : `Sieh erst ${boss.need} Karten (${boss.seen}/${boss.total})`}</small></button></div>
     <h2 class="sec">Lernpfad</h2><div class="path">${nodes}<div class="node bossnode ${bossDone ? 'done' : boss.ok ? 'open' : 'locked'}" ${boss.ok ? `data-act="boss" data-cat="${id}"` : ''}><span class="nc">${bossDone ? '🏆' : '👹'}</span><span class="nt"><b>Boss-Level</b><small>${esc(c.abzeichen?.name || '')}</small></span></div></div>
     <h2 class="sec">Alle Karten <small class="mut">(${st.total})</small></h2><div class="cardgrid">${BYCAT[id].map(cardTile).join('')}</div>`;
 };
@@ -778,13 +830,26 @@ function cardTile(c) {
   return `<button class="ctile" data-act="card" data-id="${esc(c.id)}"><div class="ct-m">${mediaHTML(c)}</div><div class="ct-t"><b>${c.land ? landLabel(c.land) : esc(c.frage.slice(0, 48))}</b><span class="box b${b}" title="Fach ${b}">${'●'.repeat(b)}${'○'.repeat(5 - b)}</span></div></button>`;
 }
 
+VIEWS.sheet = arg => {
+  const [t, id] = arg.split(':'); const isCat = t === 'cat';
+  const cards = isCat ? (BYCAT[id] || []) : (BYLAND[id] || []);
+  const title = isCat ? `${CATS[id]?.icon || ''} ${esc(CATS[id]?.name || '')}` : `${L(id).flagge} ${esc(L(id).name)}`;
+  const sorted = cards.slice().sort((a, b) => isCat ? landName(a.land || 'ZZ').localeCompare(landName(b.land || 'ZZ'), 'de') : (CATS[a.kategorie].name.localeCompare(CATS[b.kategorie].name, 'de')));
+  const items = sorted.map(c => `<article class="sheetitem" style="--c:${CATS[c.kategorie].farbe}">
+    <div class="si-h"><b>${c.land && isCat ? landLabel(c.land) : (!isCat ? CATS[c.kategorie].icon + ' ' + esc(CATS[c.kategorie].name) : '')}</b>${c.land && !isCat && c.optionen ? '' : ''}<span class="box b${boxOf(c.id)}">${'●'.repeat(boxOf(c.id))}${'○'.repeat(5 - boxOf(c.id))}</span></div>
+    ${hasVisual(c) ? `<div class="si-m">${mediaHTML(c)}</div>` : ''}
+    <p class="si-t">${c.optionen ? `<b>${nl2br(c.frage)}</b><br>✅ ${esc(c.optionen[c.richtig])}` : esc(c.hinweis || c.fokus || '')}</p>
+    ${c.erklaerung ? `<p class="mut">${nl2br(c.erklaerung)}</p>` : ''}${c.merksatz ? `<p class="fb-mem">💡 ${nl2br(c.merksatz)}</p>` : ''}</article>`).join('');
+  return `<a class="back" href="${isCat ? '#/cat/' + id : '#/home'}">‹ Zurück</a><h1 class="ph1">📖 Spickzettel: ${title}</h1><p class="lead">Alles auf einer Seite zum Durchlesen. Die Punkte zeigen dein Lernfach (●●●●● = sitzt).</p>
+    <div class="btnrow noprint"><button class="btn primary" data-act="practice" ${isCat ? `data-cat="${id}"` : `data-land="${id}"`}>🎯 Jetzt üben</button></div><div class="sheetlist">${items}</div>`;
+};
 VIEWS.map = () => {
   const counts = [0, 0, 0, 0]; Object.keys(BYLAND).forEach(i => counts[Math.max(0, medalOf(i))]++);
   return `<h1 class="ph1">Weltkarte</h1><p class="lead">Jedes Land färbt sich, wenn du seine Karten lernst.</p>
     <div class="legend"><span><i class="lg m0"></i>Neu (${counts[0]})</span><span><i class="lg m1"></i>Bronze (${counts[1]})</span><span><i class="lg m2"></i>Silber (${counts[2]})</span><span><i class="lg m3"></i>Gold (${counts[3]})</span><span><i class="lg m-1"></i>noch keine Karten</span></div>
-    <div class="mapbox big" id="pmap"></div><p class="foot">Tippe ein Land an, um Details zu sehen und gezielt zu üben.</p>`;
+    <div class="mapbox big" id="pmap"></div><p class="foot">Tippe aufs Gebiet = hineinzoomen, dann ein Land antippen für Details und gezieltes Üben.</p>`;
 };
-VIEWS.map.after = () => { createMap($('#pmap'), { cls: id => 'm' + medalOf(id), onTap: id => { if (BYLAND[id]) openCountry(id); else toast(`${landName(id)}: noch keine Karten`); } }); };
+VIEWS.map.after = () => { createMap($('#pmap'), { cls: id => 'm' + medalOf(id), onTap: id => { if (BYLAND[id]) openCountry(id); else toast(`${landName(id)}: noch keine Karten – ergänze sie in data/cards.json`); } }); };
 
 VIEWS.stats = () => {
   const sc = S.stats; const acc = sc.q ? sc.c / sc.q : 0;
@@ -845,7 +910,7 @@ function openCountry(iso) {
   const cats = DB.kategorien.map(c => { const cc = cards.filter(x => x.kategorie === c.id); if (!cc.length) return ''; const st = poolStats(cc); return `<div class="wrow"><span>${c.icon} ${esc(c.name)}</span><span class="wv">${cc.length}</span>${bar(st.avg)}</div>`; }).join('');
   openModal(`<div class="countrysheet"><div class="cflag">${L(iso).flagge}</div><h2>${esc(L(iso).name)}</h2><p class="mut">${m >= 1 ? MEDAL_NAME[m] : 'Noch nicht gestartet'} · ${s ? s.seen : 0}/${cards.length} Karten gesehen · ${s ? pct(s.avg) : 0}% Beherrschung</p>
     <div class="medalrow m${m}"><span>🥉</span><span>🥈</span><span>🥇</span></div>${cats}
-    <div class="btnrow"><button class="btn primary big" data-act="practice" data-land="${iso}">🎯 ${esc(L(iso).name)} üben</button></div></div>`);
+    <div class="btnrow"><button class="btn primary big" data-act="practice" data-land="${iso}">🎯 ${esc(L(iso).name)} üben</button><a class="btn big" href="#/sheet/land:${iso}">📖 Spickzettel</a></div></div>`);
 }
 function openCredits() {
   const withImg = CARDS.filter(c => c.image && c.source);
@@ -897,6 +962,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { if (!$('#modal').hidden) closeModal(); else if (R && !R.finished) ACT.quit(); return; }
   if (!R || R.finished || !$('#modal').hidden) return;
   if (e.key === 'Enter' && R.answered) { $('#nextbtn')?.click(); return; }
+  if (R.studying && e.key === 'Enter') { $('#stnext')?.click(); return; }
   if (!R.answered && /^[1-4]$/.test(e.key)) { const b = $$('.opt')[+e.key - 1]; b && b.click(); }
 });
 window.addEventListener('popstate', () => {

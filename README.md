@@ -4,7 +4,7 @@ Spielerische Lern-App für GeoGuessr-Meta (Deutsch, dunkles Design, Handy/Tablet
 
 **Spielprinzip:** erst raten, dann Feedback mit Merksatz. Falsche Karten kommen schnell wieder (Leitner-System, 5 Fächer: 10 Min · 1 · 3 · 7 · 21 Tage). Runden haben 10 Fragen, danach werden die Fehler wiederholt. Dazu XP, Level, Tages-Streak, 3 Leben pro Runde (abschaltbar), Weltkarte (grau → Bronze → Silber → Gold), tägliche Challenge, Boss-Level je Kategorie, Abzeichen und Statistik.
 
-Rundentypen: Multiple Choice, Land auf der Weltkarte tippen, Bilder/Hinweise Ländern zuordnen, Wahr/Falsch, Vergleich zweier Merkmale.
+Jede Lektion beginnt mit **Lernkarten** (neue Karten erst ansehen, dann abfragen). Rundentypen: Multiple Choice (Merkmal → Land und Land → Merkmal), Karteikarte zum Aufdecken mit Selbsteinschätzung, Land auf der Weltkarte tippen (erster Tipp zoomt), Zuordnung, Wahr/Falsch, Vergleich zweier Merkmale. Jede Karte kommt in einer Runde höchstens einmal in derselben Frageart vor. Pro Kategorie und Land gibt es einen **Spickzettel** (druckbar).
 
 ## Auf GitHub Pages veröffentlichen
 
