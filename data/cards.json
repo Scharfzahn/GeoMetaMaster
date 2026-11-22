@@ -293,6 +293,24 @@
     "ZA"
    ]
   },
+  "CN": {
+   "name": "China",
+   "flagge": "🇨🇳",
+   "aehnlich": [
+    "JP",
+    "KR",
+    "IN"
+   ]
+  },
+  "BY": {
+   "name": "Belarus",
+   "flagge": "🇧🇾",
+   "aehnlich": [
+    "RU",
+    "UA",
+    "PL"
+   ]
+  },
   "AT": {
    "name": "Österreich",
    "flagge": "🇦🇹",
@@ -569,7 +587,7 @@
    "richtig": 0,
    "erklaerung": "Der Trekker ist ein Rucksack mit Kamera. Er deckt Wanderwege, Parks, Inseln und Fußgängerzonen ab, wo kein Auto hinkommt.",
    "merksatz": "Weg ohne Straße = Trekker.",
-   "schwierigkeit": 1
+   "schwierigkeit": 2
   },
   {
    "id": "cov-02",
@@ -599,11 +617,11 @@
     "PL",
     "SE"
    ],
-   "schwierigkeit": 1
+   "schwierigkeit": 2
   },
   {
-   "id": "cov-04",
-   "kategorie": "coverage",
+   "id": "sun-11",
+   "kategorie": "sun",
    "land": "SE",
    "frage": "Verschneite Szene mit kahlen Bäumen auf Street View. Welches Land passt von diesen am besten?",
    "optionen": [
@@ -618,8 +636,8 @@
    "schwierigkeit": 1
   },
   {
-   "id": "cov-05",
-   "kategorie": "coverage",
+   "id": "sun-12",
+   "kategorie": "sun",
    "land": "AU",
    "frage": "Im Dezember sind die Bäume voll belaubt und es ist heiß. Welches Land passt am besten?",
    "optionen": [
@@ -646,7 +664,7 @@
    "richtig": 0,
    "erklaerung": "Street View folgt Straßen. Wo es keine befahrbaren Wege gibt, gibt es auch keine Bilder.",
    "merksatz": "Keine Straße, kein Street View.",
-   "schwierigkeit": 1
+   "schwierigkeit": 2
   },
   {
    "id": "cov-07",
@@ -661,6 +679,168 @@
    "richtig": 0,
    "erklaerung": "Inoffizielle Bilder stammen von Nutzern mit 360°-Kameras. Sie sind oft in Ländern mit wenig offizieller Abdeckung zu finden.",
    "merksatz": "Seltsame Qualität = inoffiziell.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "cov-08",
+   "kategorie": "coverage",
+   "land": "CN",
+   "hinweis": "Praktisch keine offizielle Google-Street-View-Abdeckung (Festland)",
+   "erklaerung": "Auf dem Festland von China gibt es keine offizielle Google-Abdeckung. Siehst du normale Street-View-Bilder, bist du dort fast sicher nicht.",
+   "merksatz": "China: weißer Fleck.",
+   "ablenker": [
+    "JP",
+    "TH",
+    "DE",
+    "US"
+   ],
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-09",
+   "kategorie": "coverage",
+   "land": "BY",
+   "hinweis": "Keine offizielle Google-Abdeckung, mitten in Europa",
+   "erklaerung": "Belarus ist einer der wenigen europäischen Lücken-Länder ohne offizielle Google-Abdeckung (andere Anbieter wie Yandex sind separat).",
+   "merksatz": "Belarus: Lücke in Europa.",
+   "ablenker": [
+    "PL",
+    "UA",
+    "RU",
+    "SE"
+   ],
+   "schwierigkeit": 3
+  },
+  {
+   "id": "cov-10",
+   "kategorie": "coverage",
+   "frage": "Welcher bewohnte Kontinent hat die lückenhafteste offizielle Abdeckung?",
+   "optionen": [
+    "Afrika",
+    "Europa",
+    "Nordamerika",
+    "Australien/Ozeanien"
+   ],
+   "richtig": 0,
+   "erklaerung": "In Afrika gibt es offizielle Abdeckung vor allem in einzelnen Ländern (z. B. Südafrika, Kenia, Nigeria, Ghana, Senegal), weite Teile sind unabgedeckt.",
+   "merksatz": "Afrika: Flickenteppich.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "karte",
+    "laender": [
+     "ZA"
+    ]
+   }
+  },
+  {
+   "id": "cov-11",
+   "kategorie": "coverage",
+   "frage": "Welche Länder haben in Afrika offizielle Abdeckung?",
+   "optionen": [
+    "Südafrika, Kenia, Nigeria, Ghana, Senegal (u. a.)",
+    "Ägypten und Libyen",
+    "Nur die Sahara-Staaten",
+    "Kongo und Tschad"
+   ],
+   "richtig": 0,
+   "erklaerung": "Community-Wissen: Offizielle Abdeckung gibt es in einigen Ländern wie Südafrika, Kenia, Nigeria, Ghana und Senegal. Zentralafrika und die Sahara sind weitgehend leer.",
+   "merksatz": "Afrika: Süden, Osten, Westküste.",
+   "schwierigkeit": 2
+  },
+  {
+   "id": "cov-12",
+   "kategorie": "coverage",
+   "frage": "Welche dieser Ländergruppen ist nahezu landesweit abgedeckt?",
+   "optionen": [
+    "Japan, Polen, Australien (Straßennetz)",
+    "China, Nordkorea, Iran",
+    "Kongo, Tschad, Niger",
+    "Libyen, Syrien, Jemen"
+   ],
+   "richtig": 0,
+   "erklaerung": "Japan, Polen und Australien haben sehr dichte Abdeckung entlang der Straßen. Die anderen Länder haben keine oder kaum offizielle Bilder.",
+   "merksatz": "Dicht: JP, PL, AU.",
+   "schwierigkeit": 1
+  },
+  {
+   "id": "cov-13",
+   "kategorie": "coverage",
+   "land": "AU",
+   "frage": "Australien: Wo gibt es im Outback Bilder?",
+   "optionen": [
+    "Nur entlang der großen Highways",
+    "Überall",
+    "Gar keine",
+    "Nur in den Küstenstädten"
+   ],
+   "richtig": 0,
+   "erklaerung": "Im Outback folgt Street View den großen Straßen. Dazwischen gibt es weite Lücken.",
+   "merksatz": "Outback: nur am Highway.",
+   "schwierigkeit": 2,
+   "diagram": {
+    "type": "karte",
+    "laender": [
+     "AU"
+    ]
+   }
+  },
+  {
+   "id": "cov-14",
+   "kategorie": "coverage",
+   "land": "RU",
+   "frage": "Russland: Wo ist die Abdeckung am dünnsten?",
+   "optionen": [
+    "Sibirien und der Ferne Osten abseits der Hauptstraßen",
+    "Moskau",
+    "St. Petersburg",
+    "Kaliningrad"
+   ],
+   "richtig": 0,
+   "erklaerung": "Im europäischen Teil ist es dicht, in Sibirien und im Fernen Osten gibt es nur große Hauptstraßen und Lücken.",
+   "merksatz": "Russland: Westen dicht, Osten dünn.",
+   "schwierigkeit": 2,
+   "diagram": {
+    "type": "karte",
+    "laender": [
+     "RU"
+    ]
+   }
+  },
+  {
+   "id": "cov-15",
+   "kategorie": "coverage",
+   "land": "BR",
+   "frage": "Du stehst auf einer Straße im Amazonas-Regenwald. Wie wahrscheinlich ist offizielle Abdeckung?",
+   "optionen": [
+    "Gering – nur an großen Straßen und Flüssen",
+    "Sehr hoch",
+    "Es gibt nur Trekker",
+    "Es gibt nur Gen 1"
+   ],
+   "richtig": 0,
+   "erklaerung": "Wo kaum Straßen sind, gibt es kaum Bilder. Im Amazonas ist Abdeckung auf einzelne Straßen begrenzt.",
+   "merksatz": "Wo keine Straße, kein Bild.",
+   "schwierigkeit": 1,
+   "diagram": {
+    "type": "karte",
+    "laender": [
+     "BR"
+    ]
+   }
+  },
+  {
+   "id": "cov-16",
+   "kategorie": "coverage",
+   "frage": "Ein Land ist komplett leer, aber es gibt einzelne gelbe Linien aus Nutzerfotos. Was bedeutet das?",
+   "optionen": [
+    "Inoffizielle Abdeckung (von Nutzern hochgeladen)",
+    "Gen 4",
+    "Trekker",
+    "Satelliten"
+   ],
+   "richtig": 0,
+   "erklaerung": "Gelbe/andersfarbige Linien oder Punkte zeigen Fotos von Nutzern, nicht von Googles Autos.",
+   "merksatz": "Inoffiziell = Nutzerfotos.",
    "schwierigkeit": 2
   },
   {
